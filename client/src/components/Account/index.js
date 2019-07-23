@@ -22,8 +22,6 @@ const Account = (props) => {
         state.login ? setState({ login: false, register: true }) : setState({ login: true, register: false })
     }
 
-    console.log(props)
-
     if (user.isAuth) {
         return (
             <div style={{padding: 15}}>

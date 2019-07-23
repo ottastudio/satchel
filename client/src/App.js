@@ -8,15 +8,13 @@ import Dashboard from './components/User';
 import Loader from './components/utils/Loader';
 
 const App = (props) => {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
     const routes = [
         {path: '/', name: 'Home', exact: true, Component: Home},
         {path: '/product', name: 'Product', exact: false, Component: Product},
         {path: '/user/dashboard', name: 'Dashboard', exact: false, Component: Dashboard},
     ]
-
-    // console.log(props);
 
     if(loading){
         return <Loader setLoading={(val) => setLoading(val) } />

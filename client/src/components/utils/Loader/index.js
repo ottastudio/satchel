@@ -37,7 +37,6 @@ const Loader = (props) => {
                 <SplitLetters><span>We believe that fashion is made for self-expression.</span></SplitLetters>
                 <br />
                 <br />
-                <br />
                 <SplitLetters><span>"Satchel"</span></SplitLetters>
             </Tween>
         </div>
