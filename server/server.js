@@ -313,6 +313,14 @@ app.post('/api/users/update_profile', auth, (req, res) => {
     )
 })
 
+// DEFAULT PRODUCTION
+if (process.env.NODE_ENV === 'production') {
+    const path = require('path');
+    app.get('/*', (req, res) => {
+        res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+    })
+}
+
 const port = process.env.PORT || 2207;
 app.listen(port, () => {
     console.log(`SERVER RUNNING ON PORT ${port}`)
