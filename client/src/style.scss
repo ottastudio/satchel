@@ -2,9 +2,102 @@
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
+    fill: currentColor;
+    box-sizing: border-box;
+    outline: none;
+    // font-size: 16px;
 }
 
 body {
-    background-color: #222222;
+    background-color: #151515;
     color: whitesmoke;
+    height: 100%;
+    user-select: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#satchel {
+    background-color: inherit;
+    color: inherit;
+    position: relative;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+.menu-active {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-position: under;
+}
+
+.main-menu {
+    position: fixed;
+    width: 400px;
+    min-height: 500px;
+    top: 25%;
+    left: calc(50vw - 200px);
+    border: 1px solid;
+    cursor: url('./assets/images/icons/outline-pan_tool-24px.svg'), auto;
+    z-index: 1001;
+    background-color: transparent;
+    transition: background-color 500ms ease;
+
+    &__header {
+        height: 40px;
+        border-bottom: 1px solid;
+        display: flex;
+        align-items: center;
+        padding: 0px 15px;
+
+        &__logo {
+            font-size: 18px;
+            // text-transform: uppercase;
+            // letter-spacing: 15px;
+        }
+    }
+
+    &__content {
+        padding: 15px;
+    }
+
+    &:hover {
+        background-color: inherit;
+    }
+}
+
+.main-footer {
+    position: fixed;
+    bottom: 0;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    justify-content: flex-start;
+    padding: 0px 15px;
+    // flex-wrap: wrap;
+
+    div {
+        flex: 1 1 25%;
+        font-size: 12px;
+    }
+}
+
+.container {
+    position: absolute;
+    min-height: 100vh;
+    min-width: 100vw;
+    transition: opacity 500ms cubic-bezier(1, 0, 0, 1);
+}
+.container-enter, .container-enter-active {
+    opacity: 0;
+}
+.container-enter-done, .container-exit {
+    opacity: 1;
+}
+.container-exit-active, .container-exit-done {
+    opacity: 0;
 }

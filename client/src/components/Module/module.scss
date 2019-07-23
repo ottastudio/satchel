@@ -1,0 +1,114 @@
+.module-wrapper {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 1000;
+    display: flex;
+    color: inherit;
+    transition: background-color 500ms ease;
+}
+
+.module {
+    width: 30px;
+    height: 30px;
+    border: 1px solid;
+    margin-left: -1px;
+    position: relative;
+    // overflow: hidden;
+
+    transition: 500ms cubic-bezier(1, 0, 0, 1), background-color 500ms ease;
+
+    &__icon-account {
+        left: 0px;
+        width: 100%;
+        height: 29px;
+        position: absolute;
+        z-index: 5;
+        border-bottom: 1px solid;
+        cursor: pointer;
+        svg {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            transform: translateY(-50%);
+            transition: 500ms cubic-bezier(1, 0, 0, 1);
+        }
+    }
+
+    &__icon-cart {
+        right: 0px;
+        width: 100%;
+        height: 29px;
+        position: absolute;
+        z-index: 5;
+        border-bottom: 1px solid;
+        cursor: pointer;
+        svg {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+            transition: 500ms cubic-bezier(1, 0, 0, 1);
+        }
+    }
+
+    &__container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 28px 0px 0px;
+
+        .switcher {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            padding: 15px;
+            justify-content: center;
+            text-transform: capitalize;
+            transition: 500ms ease;
+            margin-left: 1px;
+
+            div {
+                border: 1px solid;
+                height: 30px;
+                margin-left: -1px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 500ms ease;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #009688;
+                }
+            }
+
+            .active {
+                background-color: #009688;
+            }
+
+        }
+    }
+
+    &:hover {
+        background-color: #151515;
+    }
+}
+
+.module-enter {
+    width: 30px;
+    height: 30px;
+}
+
+.module-enter-active {
+    width: 400px;
+    height: 30px;
+}
+
+.module-enter-done {
+    width: 400px;
+    height: 500px;
+}

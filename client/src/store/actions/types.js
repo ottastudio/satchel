@@ -1,0 +1,9 @@
+// USERS
+export const AUTH_USER = 'AUTH_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+
+// PRODUCTS
+export const GET_PRODUCTS_BY_ARRIVAL = 'GET_PRODUCTS_BY_ARRIVAL';
+
+
+export const GET_BRANDS = 'GET_BRANDS';

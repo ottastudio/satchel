@@ -22,6 +22,7 @@
     "cloudinary": "^1.14.0",
     "concurrently": "^4.1.1",
     "cookie-parser": "^1.4.4",
+    "crypto-js": "^3.1.9-1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",

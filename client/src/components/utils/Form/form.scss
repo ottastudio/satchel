@@ -1,0 +1,46 @@
+.form-wrapper {
+    position: absolute;
+    width: 100%;
+    padding: 15px;
+
+    .form-label {
+        height: 30px;
+        display: flex;
+        align-items: center;
+    }
+
+    form {
+        // border-top: 1px solid;
+        padding: 5px;
+        .form-block {
+            color: inherit;
+            margin-bottom: 15px;
+            .form-header {
+                height: 15px;
+                display: flex;
+                align-items: flex-start;
+                text-transform: capitalize;
+                font-size: 12px !important;
+            }
+
+            input {
+                color: inherit;
+                height: 30px;
+                width: 100%;
+                border: none;
+                background: none;
+                border-bottom: 1px solid;
+                font-size: 16px;
+                
+                &::placeholder {
+                    color: inherit;
+                    opacity: 0.5;
+                    transition: 500ms cubic-bezier(1, 0, 0, 1);
+                }
+                &:focus::placeholder {
+                    opacity: 0.1;
+                }
+            }
+        }
+    }
+}
