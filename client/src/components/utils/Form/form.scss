@@ -18,9 +18,11 @@
             .form-header {
                 height: 15px;
                 display: flex;
+                justify-content: space-between;
                 align-items: flex-start;
                 text-transform: capitalize;
                 font-size: 12px !important;
+                padding-right: 15px;
             }
 
             input {
@@ -34,13 +36,31 @@
                 
                 &::placeholder {
                     color: inherit;
-                    opacity: 0.5;
+                    opacity: 0.2;
                     transition: 500ms cubic-bezier(1, 0, 0, 1);
                 }
                 &:focus::placeholder {
                     opacity: 0.1;
                 }
             }
+        }
+    }
+
+    button {
+        height: 30px;
+        width: 100%;
+        background: none;
+        border: 1px solid inherit;
+        color: inherit;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 500ms ease;
+
+        &:disabled {
+            background-color: rgba(255,255,255,0.3);
+            color: rgba(0,0,0,0.3);
+            border: 1px solid;
+            cursor: auto;
         }
     }
 }

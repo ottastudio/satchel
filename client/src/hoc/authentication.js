@@ -27,13 +27,13 @@ export default function (Composed, reload, adminRoute = null) {
                 }
                 setTimeout(() => {
                     this.setState({loading: false})
-                }, 0);
+                }, 500);
             })
         };
         
         render() {
             if (this.state.loading) {
-                return <div>Loading...</div>
+                return <div className='container'>Loading...</div>
             }
             return (
                 <Composed {...this.props} user={this.props.user} />

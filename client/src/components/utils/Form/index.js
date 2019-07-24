@@ -2,6 +2,20 @@ import React, { Fragment } from 'react';
 import './form.scss';
 
 const FormField = ({ formdata, change, id }) => {
+    const showError = () => {
+        let errorMessage = null;
+
+        if(formdata.validation && !formdata.valid){
+            errorMessage = (
+                <div className="error_label">
+                    {formdata.validationMessage}
+                </div>
+            )
+        }
+
+        return errorMessage;
+    }
+
     const renderTemplate = () => {
         let template = null;
 
@@ -13,7 +27,7 @@ const FormField = ({ formdata, change, id }) => {
                             <div className='label-inputs'>{
                                 formdata.config.label} {formdata.validation.required === true ? '*' : null}
                             </div>
-                            {/* {showError()} */}
+                            {showError()}
                         </div>
                         <input
                             {...formdata.config}

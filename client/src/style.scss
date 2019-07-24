@@ -6,6 +6,9 @@
     box-sizing: border-box;
     outline: none;
     // font-size: 16px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 body {
@@ -24,8 +27,8 @@ a {
     background-color: inherit;
     color: inherit;
     position: relative;
-    min-height: 100vh;
-    min-width: 100vw;
+    height: 100vh;
+    width: 100vw;
 }
 
 .menu-active {
@@ -38,8 +41,8 @@ a {
     position: fixed;
     width: 400px;
     min-height: 500px;
-    top: 25%;
-    left: calc(50vw - 200px);
+    top: 30px;
+    right: 30px;
     border: 1px solid;
     cursor: url('./assets/images/icons/outline-pan_tool-24px.svg'), auto;
     z-index: 1001;
@@ -47,7 +50,7 @@ a {
     transition: background-color 500ms ease;
 
     &__header {
-        height: 40px;
+        height: 29px;
         border-bottom: 1px solid;
         display: flex;
         align-items: center;

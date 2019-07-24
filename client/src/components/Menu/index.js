@@ -5,6 +5,9 @@ import { getBrands } from '../../store/actions/actions_products';
 
 import { NavLink, Link } from 'react-router-dom';
 import { Tween, SplitLetters } from 'react-gsap';
+import Authentication from '../../hoc/authentication';
+
+// import { openModule, closeModule } from '../../store/actions/actions_ui';
 
 const Menu = (props) => {
     const [state, setState] = useState({ loading: true })
@@ -13,7 +16,7 @@ const Menu = (props) => {
         setTimeout(() => {
             setState({ loading: false })
         }, 1000);
-    }, [props.dispatch])
+    }, [])
 
     const renderLink = (brands) => (
         brands ?
@@ -27,7 +30,7 @@ const Menu = (props) => {
             : null
     )
 
-    // console.log(props)
+    // console.log(props);
 
     return (
         <Drag bounds='parent'>
@@ -43,6 +46,7 @@ const Menu = (props) => {
                     {state.loading ? 'loading...' : renderLink(props.products.brands)}
                 </div>
             </div>
+
         </Drag>
     );
 };

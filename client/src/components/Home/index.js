@@ -60,7 +60,7 @@ const Home = (props) => {
                                                             width: 400,
                                                             left: '20vw',
                                                             bottom: 30,
-                                                            backgroundImage: `url('${jpg1}')`,
+                                                            backgroundImage: `url('${jpg2}')`,
                                                             backgroundPosition: 'center center',
                                                             backgroundSize: 'cover',
                                                             border: '1px solid',
@@ -105,7 +105,7 @@ const Home = (props) => {
                                                             width: 400,
                                                             left: '80vw',
                                                             top: 30,
-                                                            backgroundImage: `url('${jpg2}')`,
+                                                            backgroundImage: `url('${jpg1}')`,
                                                             backgroundPosition: 'center center',
                                                             backgroundSize: 'cover',
                                                             border: '1px solid',
@@ -141,8 +141,9 @@ const Home = (props) => {
 
 const mapStateToProps = state => {
     return {
-        products: state.products
+        products: state.products,
+        ui: state.ui
     }
 }
 
-export default connect(mapStateToProps)(authentication(Home, null));
+export default connect(mapStateToProps)(Home);

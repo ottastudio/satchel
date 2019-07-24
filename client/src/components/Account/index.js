@@ -4,7 +4,7 @@ import authentication from '../../hoc/authentication';
 import { Transition } from 'react-transition-group';
 import Login from './Login';
 import Register from './Register';
-import { Link } from 'react-router-dom';
+import UserAuth from './UserAuth';
 
 const defStyle = { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1)' }
 const transStyle = {
@@ -22,41 +22,32 @@ const Account = (props) => {
         state.login ? setState({ login: false, register: true }) : setState({ login: true, register: false })
     }
 
-    if (user.isAuth) {
-        return (
-            <div style={{padding: 15}}>
-                <div>Hello, {props.user.userData.firstname}.</div>
-                <div>
-                    <Link to='user/dashboard'>Profile</Link>
-                </div>
-            </div>
-        )
-    }
+    if (user.isAuth) return <UserAuth close={props.close} />
     return (
         <Fragment>
-            <Transition
-                in={state.login}
-                timeout={500}
-                unmountOnExit
-            >
+            <Transition in={state.login} timeout={500} unmountOnExit>
                 {state => (
-                    <Login onClick={toggle} {...props} style={{ ...defStyle, ...transStyle[state] }} />
+                    <Login
+                        {...props}
+                        onClick={toggle}
+                        style={{ ...defStyle, ...transStyle[state] }}
+                    />
                 )}
             </Transition>
-            <Transition
-                in={state.register}
-                timeout={500}
-                unmountOnExit
-            >
+
+            <Transition in={state.register} timeout={500} unmountOnExit>
                 {state => (
-                    <Register onClick={toggle} style={{ ...defStyle, ...transStyle[state] }}/>
+                    <Register
+                        onClick={toggle}
+                        switcher={() => setState({ login: true, register: false })}
+                        style={{ ...defStyle, ...transStyle[state] }}
+                    />
                 )}
             </Transition>
 
             <div className='switcher'>
-                {/* {state.login ? 'register':'login'} */}
-                <div className={state.login ? 'active':''} onClick={() => setState({login: true})}>Login</div>
-                <div className={state.register ? 'active':''} onClick={() => setState({register: true})}>Register</div>
+                <div className={state.login ? 'active' : ''} onClick={() => setState({ login: true })}>Login</div>
+                <div className={state.register ? 'active' : ''} onClick={() => setState({ register: true })}>Register</div>
             </div>
         </Fragment>
     );

@@ -5,11 +5,11 @@ import React from 'react';
 import { CSSTransition, Transition } from 'react-transition-group';
 import Account from '../Account';
 
-const defStyle = { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1)' }
+const defStyle = { opacity: 0 }
 const transStyle = {
-    entering: { opacity: 0 },
-    entered: { opacity: 1 },
-    exiting: { opacity: 0 },
+    entering: { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1) 500ms' },
+    entered: { opacity: 1, transition: '500ms cubic-bezier(1,0,0,1) 500ms' },
+    exiting: { opacity: 0, transition: '350ms cubic-bezier(1,0,0,1)' },
     exited: { opacity: 0 },
 }
 const ModuleContainer = props => {

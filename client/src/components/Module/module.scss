@@ -6,6 +6,10 @@
     display: flex;
     color: inherit;
     transition: background-color 500ms ease;
+
+    &:hover {
+        z-index: 1010;
+    }
 }
 
 .module {

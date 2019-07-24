@@ -42,5 +42,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:2207/"
+  "proxy": "http://localhost:2207/",
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^1.6.1"
+  }
 }

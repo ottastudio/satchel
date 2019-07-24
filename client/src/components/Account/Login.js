@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import FormField from '../utils/Form';
 import { update, generateData, isFormValid } from '../utils/Form/actions_form';
 
@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../store/actions/actions_user';
 import { withRouter } from 'react-router-dom';
 
-const Login = (props) => {
-    // eslint-disable-next-line
-    const [state, setState] = useState({
+class Login extends Component {
+    state = {
         formError: false,
         formSuccess: false,
+        errorMessage: 'Please check your data',
         formData: {
             email: {
                 element: 'input',
@@ -38,7 +38,7 @@ const Login = (props) => {
                 config: {
                     naame: 'password_input',
                     type: 'password',
-                    placeholder: 'your password',
+                    placeholder: '******',
                     label: 'password',
                     autoComplete: 'password'
                 },
@@ -51,86 +51,118 @@ const Login = (props) => {
                 showLable: true
             },
         }
-    })
-
-    const updateForm = (element) => {
-        const newFormdata = update(element, state.formData, 'login');
-        setState({
+    }
+    updateForm = (element) => {
+        const newFormdata = update(element, this.state.formData, 'login');
+        this.setState({
             formError: false,
             formData: newFormdata
         })
     }
 
-    const submitForm = (event) => {
+    submitForm = (event) => {
         event.preventDefault();
         event.stopPropagation();
 
-        let dataToSubmit = generateData(state.formData, 'login');
-        let formIsValid = isFormValid(state.formData, 'login')
+        let dataToSubmit = generateData(this.state.formData, 'login');
+        let formIsValid = isFormValid(this.state.formData, 'login')
 
-        if(formIsValid){
+        if (formIsValid) {
             // console.log(dataToSubmit);
-            props.dispatch(loginUser(dataToSubmit)).then(res => {
-                if(res.payload.loginSuccess){
+            this.props.dispatch(loginUser(dataToSubmit)).then(res => {
+                if (res.payload.loginSuccess) {
                     // console.log(res);
-                    // setState({formSuccess: true})
                     setTimeout(() => {
-                        props.close()
-                        props.history.push('/user/dashboard')
-                    }, 100);
-                }else{
-                    setState({formError: true})
+                        this.setState({ formSuccess: true })
+                        setTimeout(() => {
+                            this.props.close()
+                        }, 1000);
+                    }, 200);
+                    setTimeout(() => {
+                        this.props.history.push('/user/dashboard')
+                    }, 2000);
+                } else {
+                    this.setState({ 
+                        formError: true,
+                        errorMessage: res.payload.message
+                     })
+                     setTimeout(() => {
+                        this.setState({ formError: false })
+                    }, 1500);
                 }
             })
-        }else{
-            setState({formError: true})
+        } else {
+            this.setState({ 
+                formError: true
+            })
+            setTimeout(() => {
+                this.setState({ formError: false })
+            }, 1500);
         }
     }
+    render() {
 
-    // console.log(props)
-    return (
-        <div style={props.style} className='form-wrapper'>
-            {/* <label className='form-label'>Login</label> */}
-            <form onSubmit={(event) => submitForm(event)} autoComplete='on'>
-                <FormField
-                    id={'email'}
-                    formdata={state.formData.email}
-                    change={(element) => updateForm(element)}
-                />
-                <FormField
-                    id={'password'}
-                    formdata={state.formData.password}
-                    change={(element) => updateForm(element)}
-                />
+        const { formData, formSuccess, formError, errorMessage } = this.state;
 
-                {/* <div className='notes'>Required field (*)</div> */}
-
-                {state.formSuccess ?
+        // console.log(props)
+        if (formSuccess) {
+            return (
+                <div style={this.props.style} className='form-wrapper'>
                     <div className='dialog'>
                         <div className='main-dialog'>
                             Successfully logged in!
                         </div>
                         You will be redirect to dashboard page.
                     </div>
-                    : state.formError ?
+                </div>
+            )
+        }
+        return (
+            <div style={this.props.style} className='form-wrapper'>
+                <form onSubmit={(event) => this.submitForm(event)} autoComplete='on'>
+                    <FormField
+                        id={'email'}
+                        formdata={formData.email}
+                        change={(element) => this.updateForm(element)}
+                    />
+                    <FormField
+                        id={'password'}
+                        formdata={formData.password}
+                        change={(element) => this.updateForm(element)}
+                        submit={this.submitForm}
+                    />
+
+                    {/* <div className='notes'>Required field (*)</div> */}
+
+                    {formSuccess ?
                         <div className='dialog'>
-                            <div className='main-dialog error-label'>
-                                Please check your data.
+                            <div className='main-dialog'>
+                                Successfully logged in!
                             </div>
+                            You will be redirect to dashboard page.
                         </div>
-                        :
-                        <button
-                            type='submit'
-                            onClick={(event) => submitForm(event)}
-                            className={state.formError ? 'gray' : ''}
-                            disabled={!state.formData.email.value || !state.formData.password.value}
-                        >
-                            Login
-                        </button>
-                }
-            </form>
-        </div>
-    );
+                        : formError ?
+                            <div className='dialog'>
+                                <div className='main-dialog error-label'>
+                                    {/* Please check your data. */}
+                                    {errorMessage}
+                                </div>
+                            </div>
+                            :
+                            <button
+                                type='submit'
+                                onClick={(event) => this.submitForm(event)}
+                                className={formError ? 'gray' : ''}
+                                disabled={!formData.email.value || !formData.password.value}
+                            >
+                                Login
+                            </button>
+                    }
+                </form>
+            </div>
+        );
+
+    }
 };
 
 export default connect()(withRouter(Login));
