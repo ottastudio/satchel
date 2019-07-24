@@ -1,35 +1,89 @@
-import React, {useEffect} from 'react';
+import React, { Component } from 'react';
 import { Container } from '../../hoc/global';
 
-const Product = (props) => {
-    // useEffect(() => {
-    //     const menu = document.querySelector('.main-menu');
-    //     const module = document.querySelector('.module-wrapper');
-    //     menu.setAttribute('style', 'right: calc(100vw - 429px); top: calc(50% - 250px); transition: 500ms cubic-bezier(1,0,0,1)');
-        
-    //     return () => {
-    //         menu.setAttribute('style', 'right: 30px; top: 30px; transition: 500ms cubic-bezier(1,0,0,1)');
-    //         setTimeout(() => {
-    //             menu.removeAttribute('style', 'transition: 500ms cubic-bezier(1,0,0,1)')
-    //         }, 500);
-    //     }
-    // }, [])
-    return (
-        <Container>
-            Product
-            <div
-                style={{
-                    width: 400,
-                    height: 500,
-                    position: 'absolute',
-                    top: '50%',
-                    left: '25%',
-                    transform: 'translate(-50%, -50%)',
-                    border: '1px solid'
-                }}
-            />
-        </Container>
-    );
+import { connect } from 'react-redux';
+import { getProductDetail, clearProductDetail } from '../../store/actions/actions_products';
+
+import { Controller, Scene } from 'react-scrollmagic';
+import { Tween } from 'react-gsap';
+
+class Product extends Component {
+    state = {
+        loading: true
+    }
+    componentDidMount = () => {
+        const id = this.props.match.params.id;
+        this.props.dispatch(getProductDetail(id)).then(res => {
+            if (!this.props.products.detail) {
+                this.setState({ loading: true })
+            } else {
+                setTimeout(() => {
+                    this.setState({ loading: false })
+                }, 500);
+            }
+        })
+    };
+
+    componentWillUnmount = () => {
+        this.props.dispatch(clearProductDetail())
+    };
+
+
+    render() {
+        const { dispatch, history, match, location, products, user } = this.props;
+        const article = products.detail;
+        console.log(article)
+
+        const style = {
+            li: {
+                position: 'relative',
+                flexBasis: '33.33%',
+            }
+        }
+
+        if (this.state.loading) {
+            return null
+        }
+        return (
+            <Container>
+                <Controller>
+                    <Scene duration='600%' triggerHook='onLeave' pin indicators>
+                        {(progress, event) => (
+                            <div className='horizontal-container'>
+                                <Tween
+                                    to={{ xPercent: -50 }}
+                                    totalProgress={progress}
+                                    paused
+                                >
+                                    <ul
+                                        className='slide-container'
+                                        style={{
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}
+                                    >
+                                        <li style={style.li}>{article.name}</li>
+                                        <li style={style.li}>{article.category.name}</li>
+                                        <li style={style.li}>{article.gender.name}</li>
+                                        <li style={style.li}>{article.usable.name}</li>
+                                        <li style={style.li}>{article.series.name}</li>
+                                        <li style={style.li}>{article.description}</li>
+                                    </ul>
+                                </Tween>
+                            </div>
+                        )}
+                    </Scene>
+                </Controller>
+            </Container>
+        );
+    }
+
 };
 
-export default Product;
+const mapStateToProps = state => {
+    return {
+        products: state.products
+    }
+}
+
+export default connect(mapStateToProps)(Product);

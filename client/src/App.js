@@ -13,7 +13,7 @@ const App = (props) => {
 
     const routes = [
         { path: '/', name: 'Home', exact: true, Component: authentication(Home, null) },
-        { path: '/product', name: 'Product', exact: false, Component: authentication(Product, null) },
+        { path: '/product/:brand/:category/:usable/:name/:id', name: 'Product', exact: false, Component: authentication(Product, null) },
         { path: '/user/dashboard', name: 'Dashboard', exact: false, Component: authentication(Dashboard, true) },
     ];
 
