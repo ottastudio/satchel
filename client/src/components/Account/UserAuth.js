@@ -4,12 +4,14 @@ import { withRouter, Link } from 'react-router-dom';
 
 import { logoutUser } from '../../store/actions/actions_user';
 
+import { turnAllFalse } from '../../store/actions/actions_ui';
+
 const UserAuth = (props) => {
     const logoutHandler = () => {
         props.dispatch(logoutUser()).then(res => {
             if (res.payload.success) {
                 setTimeout(() => {
-                    props.close()
+                    props.dispatch(turnAllFalse())
                 }, 200);
                 setTimeout(() => {
                     props.history.push('/')
@@ -22,7 +24,7 @@ const UserAuth = (props) => {
         <div style={{ padding: 15 }}>
             <div>Hello, {props.user.userData.firstname}.</div>
             <div>
-                <Link to='/user/dashboard'>Profile</Link>
+                <Link to='/user/dashboard/profile'>Profile</Link>
             </div>
             <div onClick={() => logoutHandler()}>Logout</div>
         </div>
@@ -31,7 +33,8 @@ const UserAuth = (props) => {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
+        user: state.user,
+        ui: state.ui
     }
 }
 

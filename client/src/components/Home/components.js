@@ -35,12 +35,12 @@ const Card = forwardRef((props, ref) => {
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
         >
-            <Tween
+            {/* <Tween
                 from={{ css: { backgroundPosition: '0% center' } }}
                 to={{ css: { backgroundPosition: '-100% center' } }}
                 totalProgress={props.totalProgress}
                 paused
-            >
+            > */}
                 <div
                     style={{
                         position: 'relative',
@@ -65,6 +65,7 @@ const Card = forwardRef((props, ref) => {
                         fontSize: 24
                     }}
                 >
+                    {/* {props.totalProgress} */}
                     {hover ? 
                         <Tween
                             staggerFrom={{display: 'none'}}
@@ -84,7 +85,7 @@ const Card = forwardRef((props, ref) => {
                         
                         :null}
                 </div>
-            </Tween>
+            {/* </Tween> */}
         </Link>
     )
 })

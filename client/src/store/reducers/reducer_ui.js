@@ -1,23 +1,64 @@
 import {
-    OPEN_MODULE,
-    CLOSE_MODULE,
-    GET_MODULE
+    TOGGLE_MENU,
+    TOGGLE_ACCOUNT,
+    TOGGLE_CART,
+    TOGGLE_SEARCH,
+    TURN_ALL_FALSE
 } from '../actions/types';
 
-const initialState = {
-    module: []
+let initialState = {
+    menu: false,
+    account: false,
+    cart: false,
+    search: false,
 }
 
-export default function (state = {}, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
-        case OPEN_MODULE:
-            return { ...state, module: action.payload }
+        case TOGGLE_MENU:
+            return {
+                ...state,
+                menu: !state.menu,
+                account: false,
+                cart: false,
+                search: false
+            }
 
-        case CLOSE_MODULE:
-            return { ...state, module: action.payload }
+        case TOGGLE_ACCOUNT:
+            return {
+                ...state,
+                menu: false,
+                account: !state.account,
+                cart: false,
+                search: false
+            }
 
-        case GET_MODULE:
-            return { ...state, module: action.payload }
+        case TOGGLE_CART:
+            return {
+                ...state,
+                menu: false,
+                account: false,
+                cart: !state.cart,
+                search: false
+            }
+
+        case TOGGLE_SEARCH:
+            return {
+                ...state,
+                menu: false,
+                account: false,
+                cart: false,
+                search: !state.search
+            }
+
+        case TURN_ALL_FALSE:
+            return {
+                ...state,
+                menu: false,
+                account: false,
+                cart: false,
+                search: false
+            }
 
         default:
             return state;

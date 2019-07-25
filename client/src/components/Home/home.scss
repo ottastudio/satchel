@@ -1,11 +1,12 @@
 .horizontal-container {
-    height: 100vh;
+    height: calc(100vh - 1px);
     overflow: hidden;
-    position: relative;
+    // position: relative;
 }
 
 .slide-container {
-    width: 200vw;
+    width: 333.3vw;
     height: 100vh;
     position: relative;
+    overflow: hidden;
 }

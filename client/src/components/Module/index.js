@@ -1,35 +1,51 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './module.scss';
 import { ModuleContainer } from './components';
 import useOnClickOutside from './hooks';
 
-const Module = () => {
+import {
+    toggleMenuUI,
+    toggleAccountUI,
+    toggleCartUI,
+    toggleSearchUI,
+    turnAllFalse
+} from '../../store/actions/actions_ui';
+import { connect } from 'react-redux';
+
+const Module = (props) => {
     const ref = useRef();
-    const [state, setState] = useState({ account: false, cart: false });
+    useOnClickOutside(ref, () => props.dispatch(turnAllFalse()));
 
-    useOnClickOutside(ref, () => setState({ account: false, cart: false }));
-
-    const toggleAccount = () => {
-        state.account ? setState({ account: false, cart: false }) : setState({ account: true, cart: false })
-    }
-    const toggleCart = () => {
-        state.cart ? setState({ account: false, cart: false }) : setState({ account: false, cart: true })
-    }
     return (
         <div className='module-wrapper' ref={ref}>
             <ModuleContainer
-                state={state.account}
-                type='account'
-                onClick={toggleAccount}
-                close={() => setState({ account: false })}
+                state={props.ui.menu}
+                type='menu'
+                onClick={() => props.dispatch(toggleMenuUI())}
             />
             <ModuleContainer
-                state={state.cart}
+                state={props.ui.account}
+                type='account'
+                onClick={() => props.dispatch(toggleAccountUI())}
+            />
+            <ModuleContainer
+                state={props.ui.cart}
                 type='cart'
-                onClick={toggleCart}
+                onClick={() => props.dispatch(toggleCartUI())}
+            />
+            <ModuleContainer
+                state={props.ui.search}
+                type='search'
+                onClick={() => props.dispatch(toggleSearchUI())}
             />
         </div>
     );
 };
 
-export default Module;
+const mapStateToProps = state => {
+    return {
+        ui: state.ui
+    }
+}
+
+export default connect(mapStateToProps)(Module);

@@ -1,9 +1,10 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import FormField from '../utils/Form';
 import { update, generateData, isFormValid } from '../utils/Form/actions_form';
 
 import { connect } from 'react-redux';
 import { loginUser } from '../../store/actions/actions_user';
+import { turnAllFalse } from '../../store/actions/actions_ui';
 import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
@@ -68,31 +69,29 @@ class Login extends Component {
         let formIsValid = isFormValid(this.state.formData, 'login')
 
         if (formIsValid) {
-            // console.log(dataToSubmit);
             this.props.dispatch(loginUser(dataToSubmit)).then(res => {
                 if (res.payload.loginSuccess) {
-                    // console.log(res);
                     setTimeout(() => {
                         this.setState({ formSuccess: true })
                         setTimeout(() => {
-                            this.props.close()
+                            this.props.dispatch(turnAllFalse())
                         }, 1000);
                     }, 200);
                     setTimeout(() => {
                         this.props.history.push('/user/dashboard')
                     }, 2000);
                 } else {
-                    this.setState({ 
+                    this.setState({
                         formError: true,
                         errorMessage: res.payload.message
-                     })
-                     setTimeout(() => {
+                    })
+                    setTimeout(() => {
                         this.setState({ formError: false })
                     }, 1500);
                 }
             })
         } else {
-            this.setState({ 
+            this.setState({
                 formError: true
             })
             setTimeout(() => {
@@ -101,10 +100,8 @@ class Login extends Component {
         }
     }
     render() {
-
         const { formData, formSuccess, formError, errorMessage } = this.state;
 
-        // console.log(props)
         if (formSuccess) {
             return (
                 <div style={this.props.style} className='form-wrapper'>
@@ -131,8 +128,6 @@ class Login extends Component {
                         change={(element) => this.updateForm(element)}
                         submit={this.submitForm}
                     />
-
-                    {/* <div className='notes'>Required field (*)</div> */}
 
                     {formSuccess ?
                         <div className='dialog'>
@@ -165,4 +160,10 @@ class Login extends Component {
     }
 };
 
-export default connect()(withRouter(Login));
+const mapStateToProps = state => {
+    return {
+        ui: state.ui
+    }
+}
+
+export default connect(mapStateToProps)(withRouter(Login));

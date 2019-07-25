@@ -30,9 +30,10 @@ class Product extends Component {
 
 
     render() {
-        const { dispatch, history, match, location, products, user } = this.props;
+        // eslint-disable-next-line
+        const { products, user } = this.props;
         const article = products.detail;
-        console.log(article)
+        // console.log(article)
 
         const style = {
             li: {

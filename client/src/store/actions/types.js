@@ -16,6 +16,8 @@ export const GET_BRANDS = 'GET_BRANDS';
 
 
 // UI
-export const OPEN_MODULE = 'OPEN_MODULE';
-export const CLOSE_MODULE = 'CLOSE_MODULE';
-export const GET_MODULE = 'GET_MODULE';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const TOGGLE_ACCOUNT = 'TOGGLE_ACCOUNT';
+export const TOGGLE_CART = 'TOGGLE_CART';
+export const TOGGLE_SEARCH = 'TOGGLE_SEARCH';
+export const TURN_ALL_FALSE = 'TURN_ALL_FALSE';

@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import FormField from '../utils/Form';
 import { update, generateData, isFormValid } from '../utils/Form/actions_form';
 

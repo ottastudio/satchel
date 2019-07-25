@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import Drag from 'react-draggable';
 import { connect } from 'react-redux';
 import { getBrands } from '../../store/actions/actions_products';
 
 import { NavLink, Link } from 'react-router-dom';
 import { Tween, SplitLetters } from 'react-gsap';
-import Authentication from '../../hoc/authentication';
-
-// import { openModule, closeModule } from '../../store/actions/actions_ui';
 
 const Menu = (props) => {
     const [state, setState] = useState({ loading: true })
@@ -30,24 +26,19 @@ const Menu = (props) => {
             : null
     )
 
-    // console.log(props);
-
     return (
-        <Drag bounds='parent'>
-            <div className='main-menu'>
-                <header className='main-menu__header'>
-                    <Link to='/' className='main-menu__header__logo'>
-                        <Tween staggerFrom={{ display: 'none' }} duration={7} stagger={0.3}>
-                            <SplitLetters><span>Satchel</span></SplitLetters>
-                        </Tween>
-                    </Link>
-                </header>
-                <div className='main-menu__content'>
-                    {state.loading ? 'loading...' : renderLink(props.products.brands)}
-                </div>
+        <div className='main-menu'>
+            <header className='main-menu__header'>
+                <Link to='/' className='main-menu__header__logo'>
+                    <Tween staggerFrom={{ display: 'none' }} duration={7} stagger={0.3}>
+                        <SplitLetters><span>Satchel</span></SplitLetters>
+                    </Tween>
+                </Link>
+            </header>
+            <div className='main-menu__content'>
+                {state.loading ? 'loading...' : renderLink(props.products.brands)}
             </div>
-
-        </Drag>
+        </div>
     );
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = (props) => {
     return (
-        <footer className='main-footer'>
+        <footer className='main-footer' style={props.style}>
             <div>
                 &copy;2019 Satchel. All rights reserved.
             </div>
