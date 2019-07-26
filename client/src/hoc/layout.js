@@ -4,8 +4,12 @@ import Module from '../components/Module';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
+import {connect} from 'react-redux';
+import {getSiteData} from '../store/actions/actions_site';
+
 const Layout = (props) => {
-    const [scroll, setScroll] = useState(0)
+    const [scroll, setScroll] = useState(0);
+    const [site, setSite] = useState()
     const scrollProgress = () => {
         const scrollPx = document.documentElement.scrollTop;
         const winHeightPx = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -15,23 +19,32 @@ const Layout = (props) => {
 
     useEffect(() => {
         window.addEventListener('scroll', scrollProgress)
+        props.dispatch(getSiteData()).then(res => {
+            // console.log(res);
+            setSite(res.payload[0])
+        })
         return () => {
             window.removeEventListener('scroll', scrollProgress)
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const globStyle = {
         borderTop: {
-            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'top 500ms cubic-bezier(1,0,0,1)', borderBottom: '1px solid', top: scroll === '110%' ? 40 : -1
+            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'top 500ms cubic-bezier(1,0,0,1)', borderBottom: '1px solid', 
+            top: scroll === '110%' ? 40 : -1
         },
         borderBottom: {
-            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'bottom 500ms cubic-bezier(1,0,0,1)', borderTop: '1px solid', bottom: scroll === '110%' ? 40 : -1
+            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'bottom 500ms cubic-bezier(1,0,0,1)', borderTop: '1px solid', 
+            bottom: scroll === '110%' ? 40 : -1
         },
         borderLeft: {
-            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'left 500ms cubic-bezier(1,0,0,1)', borderRight: '1px solid', left: scroll === '110%' ? 40 : -1
+            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'left 500ms cubic-bezier(1,0,0,1)', borderRight: '1px solid', 
+            left: scroll === '110%' ? 40 : -1
         },
         borderRight: {
-            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'right 500ms cubic-bezier(1,0,0,1)', borderLeft: '1px solid', right: scroll === '110%' ? 40 : -1
+            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'right 500ms cubic-bezier(1,0,0,1)', borderLeft: '1px solid', 
+            right: scroll === '110%' ? 40 : -1
         }
     }
 
@@ -48,8 +61,10 @@ const Layout = (props) => {
             <div style={{ ...globStyle.borderLeft }} />
             <div style={{ ...globStyle.borderRight }} />
             {/* <Menu /> */}
-            <Module />
-            <NavLink to='/' exact activeClassName='home-active' className='home-link'>Satchel</NavLink>
+            <Module {...site} />
+            <NavLink to='/' exact activeClassName='home-active' className='home-link'>
+                {site ? site.name : null}
+            </NavLink>
             <div
                 onClick={() => window.scrollTo(0, 0)}
                 style={{
@@ -79,11 +94,18 @@ const Layout = (props) => {
                 unmountOnExit
             >
                 {state => (
-                    <Footer style={{ ...footerTransition[state] }} />
+                    <Footer {...site} style={{ ...footerTransition[state] }} />
                 )}
             </Transition>
+            {/* <Footer {...site} /> */}
         </Fragment>
     );
 };
 
-export default Layout;
+const mapStateToProps = state => {
+    return {
+        site: state.site
+    }
+}
+
+export default connect(mapStateToProps)(Layout);

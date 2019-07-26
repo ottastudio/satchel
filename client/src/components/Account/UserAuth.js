@@ -24,7 +24,7 @@ const UserAuth = (props) => {
         <div style={{ padding: 15 }}>
             <div>Hello, {props.user.userData.firstname}.</div>
             <div>
-                <Link to='/user/dashboard/profile'>Profile</Link>
+                <Link to='/user/dashboard'>Profile</Link>
             </div>
             <div onClick={() => logoutHandler()}>Logout</div>
         </div>

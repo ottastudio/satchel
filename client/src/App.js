@@ -8,6 +8,10 @@ import Product from './components/Product';
 import Dashboard from './components/User';
 // import Loader from './components/utils/Loader';
 import authentication from './hoc/authentication';
+import Account from './components/User/Account';
+import Settings from './components/User/Admin/Settings';
+import admin from './hoc/admin';
+import Products from './components/User/Admin/Products';
 
 // const useWindowWidth = () => {
 //     const [width, setWidth] = useState(window.innerWidth);
@@ -28,8 +32,15 @@ const App = (props) => {
 
     const routes = [
         { path: '/', name: 'Home', exact: true, Component: authentication(Home, null) },
-        { path: '/product/:brand/:category/:usable/:name/:id', name: 'Product', exact: false, Component: authentication(Product, null) },
-        { path: '/user/dashboard', name: 'Dashboard', exact: false, Component: authentication(Dashboard, true) },
+        { path: '/product/:brand/:category/:usable/:name/:id', name: 'Product', exact: true, Component: authentication(Product, null) },
+        { 
+            path: '/user/dashboard', name: 'Dashboard', exact: false, Component: authentication(Dashboard, true),
+            subRoutes: [
+                {path: '/user/dashboard/account', exact: true, Component: authentication(Account, true)},
+                {path: '/user/dashboard/settings', exact: true, Component: admin(Settings)},
+                {path: '/user/dashboard/products', exact: true, Component: admin(Products)},
+            ]
+        },
     ];
 
     // if (loading) {
@@ -39,7 +50,7 @@ const App = (props) => {
 
     return (
         <Layout>
-            {routes.map(({ path, exact, Component }) => (
+            {routes.map(({ path, exact, Component, subRoutes }) => (
                 <Route key={path} exact={exact} path={path}>
                     {({ match }) => (
                         <CSSTransition
@@ -48,7 +59,7 @@ const App = (props) => {
                             classNames='container'
                             unmountOnExit mountOnEnter
                         >
-                            <Component />
+                            <Component subRoutes={subRoutes} />
                         </CSSTransition>
                     )}
                 </Route>

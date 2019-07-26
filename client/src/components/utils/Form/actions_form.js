@@ -65,3 +65,15 @@ export const isFormValid = (formData, formName) => {
 
     return formIsValid;
 }
+
+export const populateOptionFields= (formdata, arrayData =[],field) => {
+    const newArray = [];
+    const newFormdata = {...formdata};
+
+    arrayData.forEach(item=>{
+        newArray.push({key:item._id,value:item.name});
+    });
+
+    newFormdata[field].config.options = newArray;
+    return newFormdata;
+}

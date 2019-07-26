@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from 'react';
 import { Tween, SplitLetters } from 'react-gsap';
 import { Link } from 'react-router-dom';
+// import './home.scss';
 
 const Card = forwardRef((props, ref) => {
     // console.log(props)
@@ -18,18 +19,10 @@ const Card = forwardRef((props, ref) => {
     }
     return (
         <Link
+            className='home-card'
             ref={ref}
             style={{
-                position: 'absolute',
-                width: 400,
-                height: 500,
-                border: '1px solid',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
                 filter: hover ? 'grayscale(0)' : 'grayscale(1)',
-                overflow: 'hidden',
-                transition: 'filter 500ms cubic-bezier(1,0,0,1)',
             }}
             to={`/product/${props.brand.name}/${props.category.name}/${props.usable.name}/${props.name}/${props._id}`}
             onMouseEnter={toggleHover}
@@ -48,7 +41,8 @@ const Card = forwardRef((props, ref) => {
                         width: '100%',
                         display: 'block',
                         backgroundImage: `url('${renderImage(props.images)}')`,
-                        backgroundSize: '110%',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
                         transform: hover ? 'scale(1.1)':'scale(1)',
                         // filter: hover ? 'blur(0px)' : 'blur(2px)',
                         transition: 'transform 500ms cubic-bezier(1,0,0,1), filter 500ms cubic-bezier(1,0,0,1)',

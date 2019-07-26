@@ -27,6 +27,7 @@ const { Brand } = require('./models/brand');
 const { Category } = require('./models/category');
 const { Series } = require('./models/series');
 const { Usable } = require('./models/usable');
+const { Site } = require('./models/site');
 
 //=================================
 //             MIDDLEWARE
@@ -59,7 +60,7 @@ app.post('/api/product/usable', auth, admin, (req, res) => {
     const usable = new Usable(req.body);
 
     usable.save((err, doc) => {
-        if(err) return res.json({success: false, err});
+        if (err) return res.json({ success: false, err });
         res.status(200).json({
             success: true,
             usable: doc
@@ -79,7 +80,7 @@ app.post('/api/product/category', auth, admin, (req, res) => {
     const category = new Category(req.body);
 
     category.save((err, doc) => {
-        if(err) return res.json({success: false, err});
+        if (err) return res.json({ success: false, err });
         res.status(200).json({
             success: true,
             category: doc
@@ -99,7 +100,7 @@ app.post('/api/product/brand', auth, admin, (req, res) => {
     const brand = new Brand(req.body);
 
     brand.save((err, doc) => {
-        if(err) return res.json({success: false, err});
+        if (err) return res.json({ success: false, err });
         res.status(200).json({
             success: true,
             brand: doc
@@ -119,7 +120,7 @@ app.post('/api/product/series', auth, admin, (req, res) => {
     const series = new Series(req.body);
 
     series.save((err, doc) => {
-        if(err) return res.json({success: false, err});
+        if (err) return res.json({ success: false, err });
         res.status(200).json({
             success: true,
             series: doc
@@ -241,6 +242,7 @@ app.post('/api/product/article', auth, admin, (req, res) => {
 app.get('/api/users/auth', auth, (req, res) => {
     res.status(200).json({
         isAdmin: req.user.role === 1 ? true : false,
+        isSuperAdmin: req.user.role === 2 ? true : false,
         isAuth: true,
         email: req.user.email,
         firstname: req.user.firstname,
@@ -259,7 +261,7 @@ app.get('/api/users', auth, admin, (req, res) => {
 // REGISTER
 app.post('/api/users/register', (req, res) => {
     const user = new User(req.body);
-    
+
     user.save((err, doc) => {
         if (err) return res.json({ success: false, err });
         res.status(200).json({
@@ -309,6 +311,31 @@ app.post('/api/users/update_profile', auth, (req, res) => {
             return res.status(200).send({
                 success: true,
                 doc
+            })
+        }
+    )
+})
+
+//=================================
+//              SITE
+//=================================
+app.get('/api/site/site_data', (req, res) => {
+    Site.find({}, (err, site) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).send(site[0].siteInfo)
+    });
+});
+
+app.post('/api/site/site_data', auth, admin, (req, res) => {
+    Site.findOneAndUpdate(
+        { name: 'Site' },
+        { "$set": { siteInfo: req.body } },
+        { new: true },
+        (err, doc) => {
+            if (err) return res.json({ success: false, err });
+            return res.status(200).send({
+                success: true,
+                siteInfo: doc.siteInfo
             })
         }
     )

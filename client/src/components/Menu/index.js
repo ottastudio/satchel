@@ -12,6 +12,7 @@ const Menu = (props) => {
         setTimeout(() => {
             setState({ loading: false })
         }, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLink = (brands) => (

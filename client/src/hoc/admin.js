@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { auth } from '../store/actions/actions_user';
 
 export default function (Composed, reload, adminRoute = null) {
-    class Authentication extends Component {
+    class Admin extends Component {
         state = {
             loading: true
         }
@@ -12,28 +12,23 @@ export default function (Composed, reload, adminRoute = null) {
             this.props.dispatch(auth()).then(response =>{
                 let user = this.props.user.userData;
 
-                if(!user.isAuth){
-                    if(reload){
-                        this.props.history.push('/')
-                    }
-                } else{
-                    if(adminRoute && !user.isAdmin){
-                        this.props.history.push('/user/dashboard')
-                    } else{
-                        if(reload === false){
-                            this.props.history.push('/user/dashboard')
-                        }
-                    }
-                }
+                if(!user.isAdmin){
+                    this.props.history.push('/')
+                } 
                 setTimeout(() => {
                     this.setState({loading:false})
                 }, 500);
             })
         };
 
+        // componentWillUnmount = () => {
+        //     this.props.dispatch(adminChecker(false))
+        // };
+        
+
         render() {
             if (this.state.loading) {
-                return <div className='container'>Loading...</div>
+                return <div className='container'>Are you an administrator?</div>
             }
             return (
                 <Composed {...this.props} user={this.props.user} />
@@ -46,5 +41,5 @@ export default function (Composed, reload, adminRoute = null) {
             user: state.user
         }
     }
-    return connect(mapStateToProps)(withRouter(Authentication));
+    return connect(mapStateToProps)(withRouter(Admin));
 }

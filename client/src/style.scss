@@ -42,10 +42,10 @@ a {
 
 .home-link {
     position: fixed;
-    bottom: 40px;
+    top: 40px;
     left: 40px;
     height: 40px;
-    width: 120px;
+    width: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -53,7 +53,7 @@ a {
     z-index: 1001;
     background-color: none;
     text-decoration: none;
-    // transition: background-color 500ms cubic-bezier(1, 0, 0, 1);
+    transition: top 500ms cubic-bezier(1, 0, 0, 1);
 }
 
 .home-active {

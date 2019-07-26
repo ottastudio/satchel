@@ -3,7 +3,9 @@ import {
     TOGGLE_ACCOUNT,
     TOGGLE_CART,
     TOGGLE_SEARCH,
-    TURN_ALL_FALSE
+    TURN_ALL_FALSE,
+    TOGGLE_DASHBOARD_MENU,
+    TOGGLE_DASHBOARD_MENU_FALSE
 } from '../actions/types';
 
 let initialState = {
@@ -11,6 +13,7 @@ let initialState = {
     account: false,
     cart: false,
     search: false,
+    dashboardMenu: false
 }
 
 export default function (state = initialState, action) {
@@ -58,6 +61,18 @@ export default function (state = initialState, action) {
                 account: false,
                 cart: false,
                 search: false
+            }
+
+        case TOGGLE_DASHBOARD_MENU:
+            return {
+                ...state,
+                dashboardMenu: !state.dashboardMenu
+            }
+            
+        case TOGGLE_DASHBOARD_MENU_FALSE:
+            return {
+                ...state,
+                dashboardMenu: false
             }
 
         default:

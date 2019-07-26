@@ -8,8 +8,8 @@ import Menu from '../Menu';
 
 const defStyle = { opacity: 0 }
 const transStyle = {
-    entering: { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1) 500ms' },
-    entered: { opacity: 1, transition: '500ms cubic-bezier(1,0,0,1) 500ms' },
+    entering: { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1)' },
+    entered: { opacity: 1, transition: '500ms cubic-bezier(1,0,0,1)' },
     exiting: { opacity: 0, transition: '250ms cubic-bezier(1,0,0,1)' },
     exited: { opacity: 0 },
 }

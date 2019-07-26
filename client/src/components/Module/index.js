@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './module.scss';
 import { ModuleContainer } from './components';
-import useOnClickOutside from './hooks';
+import useOnClickOutside from '../utils/hooks';
 
 import {
     toggleMenuUI,

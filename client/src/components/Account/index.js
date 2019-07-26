@@ -8,7 +8,7 @@ import UserAuth from './UserAuth';
 
 const defStyle = { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1)' }
 const transStyle = {
-    entering: { opacity: 0 },
+    entering: { opacity: 1 },
     entered: { opacity: 1 },
     exiting: { opacity: 0 },
     exited: { opacity: 0 },
