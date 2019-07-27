@@ -73,9 +73,9 @@ class Login extends Component {
                 if (res.payload.loginSuccess) {
                     setTimeout(() => {
                         this.setState({ formSuccess: true })
-                        setTimeout(() => {
-                            this.props.dispatch(turnAllFalse())
-                        }, 1000);
+                        // setTimeout(() => {
+                        //     this.props.dispatch(turnAllFalse())
+                        // }, 1000);
                     }, 200);
                     setTimeout(() => {
                         this.props.history.push('/user/dashboard')
@@ -96,7 +96,7 @@ class Login extends Component {
             })
             setTimeout(() => {
                 this.setState({ formError: false })
-            }, 1500);
+            }, 3000);
         }
     }
     render() {
@@ -154,6 +154,10 @@ class Login extends Component {
                             </button>
                     }
                 </form>
+
+                <div className='footnote'>
+                    For faster and secure checkout, you can register new account by clicking register button below.
+                </div>
             </div>
         );
 

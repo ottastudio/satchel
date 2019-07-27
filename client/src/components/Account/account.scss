@@ -1,0 +1,94 @@
+.account-admin {
+    @mixin flex {
+        display: flex;
+        align-items: center;
+    }
+
+    position: relative;
+    height: 100%;
+
+    &-header {
+        padding: 15px;
+        // border-bottom: 1px solid;
+        p {
+            font-size: 12px;
+        }
+
+        div {
+            // padding: 0px 15px;
+            height: 40px;
+            // border: 1px solid;
+            // @include flex;
+        }
+    }
+
+    &-link {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        position: relative;
+        // padding: 10px 0px;
+        padding: 15px 10px 15px 15px;
+
+        @mixin br {
+            @keyframes br {
+                from {
+                    box-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #FF1177, 0 0 5px #FF1177, 0 0 6px #FF1177;
+                    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+                }
+
+                to {
+                    box-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 8px #FF1177, 0 0 10px #FF1177, 0 0 12px #FF1177;
+                    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+                }
+            }
+        }
+
+        &__link {
+            padding: 0px 15px;
+            // font-size: 14px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid;
+            margin: 0px 15px 15px 0px;
+            text-transform: capitalize;
+            transition: 500ms ease;
+
+            &:hover {
+                background-color: rgba(255, 77, 107, 1);
+                border-radius: 50px;
+                // animation: br 1s ease-in-out infinite alternate 100ms;
+                // @include br();
+            }
+        }
+
+        &__logout {
+            @include flex;
+            justify-content: center;
+            position: absolute;
+            height: 40px;
+            border: 1px solid;
+            right: 15px;
+            bottom: 15px;
+            left: 15px;
+            cursor: pointer;
+            transition: 500ms ease;
+
+            &:hover {
+                background-color: rgba(255, 77, 107, 1);
+                border-radius: 50px;
+                animation: br 1s ease-in-out infinite alternate 100ms;
+                @include br();
+            }
+        }
+
+        &__active {
+            // background-color: rgba(255, 77, 107, 1);
+            border-radius: 50px;
+            // animation: br 1s ease-in-out infinite alternate;
+            // @include br();
+        }
+    }
+}

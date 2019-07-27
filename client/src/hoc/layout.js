@@ -4,8 +4,8 @@ import Module from '../components/Module';
 import { Transition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 
-import {connect} from 'react-redux';
-import {getSiteData} from '../store/actions/actions_site';
+import { connect } from 'react-redux';
+import { getSiteData } from '../store/actions/actions_site';
 
 const Layout = (props) => {
     const [scroll, setScroll] = useState(0);
@@ -20,33 +20,13 @@ const Layout = (props) => {
     useEffect(() => {
         window.addEventListener('scroll', scrollProgress)
         props.dispatch(getSiteData()).then(res => {
-            // console.log(res);
             setSite(res.payload[0])
         })
         return () => {
             window.removeEventListener('scroll', scrollProgress)
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const globStyle = {
-        borderTop: {
-            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'top 500ms cubic-bezier(1,0,0,1)', borderBottom: '1px solid', 
-            top: scroll === '110%' ? 40 : -1
-        },
-        borderBottom: {
-            position: 'fixed', left: 0, height: 1, width: '100vw', zIndex: 10000, transition: 'bottom 500ms cubic-bezier(1,0,0,1)', borderTop: '1px solid', 
-            bottom: scroll === '110%' ? 40 : -1
-        },
-        borderLeft: {
-            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'left 500ms cubic-bezier(1,0,0,1)', borderRight: '1px solid', 
-            left: scroll === '110%' ? 40 : -1
-        },
-        borderRight: {
-            position: 'fixed', bottom: 0, top: 0, width: 1, height: '100vh', zIndex: 10000, transition: 'right 500ms cubic-bezier(1,0,0,1)', borderLeft: '1px solid', 
-            right: scroll === '110%' ? 40 : -1
-        }
-    }
 
     const footerTransition = {
         entering: { bottom: 0, opacity: 0 },
@@ -56,14 +36,13 @@ const Layout = (props) => {
     }
     return (
         <Fragment>
-            <div style={{ ...globStyle.borderTop }} />
-            <div style={{ ...globStyle.borderBottom }} />
-            <div style={{ ...globStyle.borderLeft }} />
-            <div style={{ ...globStyle.borderRight }} />
-            {/* <Menu /> */}
+            <div className='border-top' style={{ top: scroll === '110%' ? 40 : -1 }} />
+            <div className='border-right' style={{ right: scroll === '110%' ? 40 : -1 }} />
+            <div className='border-bottom' style={{ bottom: scroll === '110%' ? 40 : -1 }} />
+            <div className='border-left' style={{ left: scroll === '110%' ? 40 : -1 }} />
             <Module {...site} />
             <NavLink to='/' exact activeClassName='home-active' className='home-link'>
-                {site ? site.name : null}
+                {site ? site.name : 'loading...'}
             </NavLink>
             <div
                 onClick={() => window.scrollTo(0, 0)}

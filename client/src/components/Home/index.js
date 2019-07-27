@@ -8,7 +8,7 @@ import { getProductsByArrival } from '../../store/actions/actions_products';
 
 import { Controller, Scene } from 'react-scrollmagic';
 import { Tween, SplitLetters } from 'react-gsap';
-import { Card } from './components';
+import { Card, CoverLetter } from './components';
 // import { toggleSearchUI } from '../../store/actions/actions_ui';
 
 const Home = (props) => {
@@ -18,12 +18,10 @@ const Home = (props) => {
         props.dispatch(getProductsByArrival())
         // props.dispatch(toggleSearchUI())
         window.scrollTo(0, 0)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // console.log(props);
-
-    const noScroll = () => window.scrollTo(0, 0)
+    // const noScroll = () => window.scrollTo(0, 0)
 
     const ref = useRef();
 
@@ -33,22 +31,20 @@ const Home = (props) => {
                 <Tween
                     from={{ opacity: 0 }}
                     to={{ opacity: 1 }}
-                    duration={3}
+                    duration={1}
                     playState={showCard ? 'play' : 'stop'}
                     key={i}
                 >
-                    <div key={i} style={{ position: 'relative', flexBasis: '33.33%', overflow: 'hidden'}}>
-                        {/* {showCard ? <Card ref={ref} totalProgress={progress} index={i} {...item} /> : null} */}
-                        <Card ref={ref} totalProgress={progress} event={event} index={i} {...item} />
+                    <div className='slide-container__content' key={i}>
+                        {showCard ? 
+                            <Card ref={ref} totalProgress={progress} event={event} index={i} {...item} />    
+                            : null
+                        }
                     </div>
                 </Tween>
             ))
             : null
     )
-
-    // console.log(props)
-    const vh = window.innerHeight + 45
-    console.log(vh);
 
     return (
         <Container>
@@ -56,97 +52,25 @@ const Home = (props) => {
                 <Scene duration='1000%' triggerHook='onLeave' pin>
                     {(progress, event) => (
                         <div className='horizontal-container'>
-                            <Tween
-                                to={{ xPercent: -50 }}
-                                totalProgress={progress}
-                                paused
-                            >
-                                <div
-                                    className='slide-container'
-                                    style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between'
-                                    }}
-                                >
+                            <Tween to={{ xPercent: -50 }} totalProgress={progress} paused>
+                                <div className='slide-container'>
                                     <Tween from={{ opacity: 0 }} to={{ opacity: 1 }} duration={2}>
-                                        <div style={{ flexBasis: '33.33%', position: 'relative' }}>
-                                            <Controller>
-                                                <Scene duration='100%' triggerHook='onLeave'>
-                                                    {prog => (
-                                                        <Tween to={{ opacity: 0, xPercent: 50 }} totalProgress={prog} paused>
-                                                            <div
-                                                                className='home-card'
-                                                                style={{
-                                                                    // position: 'absolute',
-                                                                    // top: '50%',
-                                                                    // left: 40,
-                                                                    // width: 400,
-                                                                    // height: 500,
-                                                                    // transform: 'translateY(-50%)',
-                                                                    border: 'none'
-                                                                }}
-                                                            >
-                                                                <Tween
-                                                                    staggerFrom={{ display: 'none' }}
-                                                                    stagger={0.05}
-                                                                    // onStartAll={() => {
-                                                                    //     window.addEventListener('scroll', noScroll)
-                                                                    // }}
-                                                                    onCompleteAll={
-                                                                        () => {
-                                                                            // window.removeEventListener('scroll', noScroll)
-                                                                            window.scrollTo(0, vh)
-                                                                            setTimeout(() => {
-                                                                                setShowCard(true)
-                                                                            }, 500);
-                                                                        }
-                                                                    }
-                                                                >
-                                                                    <SplitLetters><span>Dear, {props.user.userData.firstname ? `${props.user.userData.firstname}'s` : 'our lovely Customers'}.</span></SplitLetters>
-                                                                    <br />
-                                                                    <br />
-                                                                    <br />
-                                                                    <SplitLetters><span>As creators of fashion stuffs, we want to inspire and assist you in finding your comfort and personal style.</span></SplitLetters>
-                                                                    <br />
-                                                                    <br />
-                                                                    <SplitLetters><span>We believe that fashion is made for self-expression.</span></SplitLetters>
-                                                                    <br />
-                                                                    <br />
-                                                                    <SplitLetters><span>Sincerely,</span></SplitLetters>
-                                                                    <br />
-                                                                    <SplitLetters><span>Satchel</span></SplitLetters>
-                                                                </Tween>
-
-                                                            </div>
-
-                                                        </Tween>
-                                                    )}
-                                                </Scene>
-                                            </Controller>
+                                        <div className='slide-container__content'>
+                                            <CoverLetter setShowCard={() => setShowCard(true)} {...props} />
                                         </div>
-
                                     </Tween>
+
                                     {renderArticles(props.products.byArrival, progress, event)}
-                                    <div style={{ flexBasis: '33.33%', position: 'relative' }}>
-                                        <Link
-                                            className='home-card'
-                                            to='/product'
-                                            // style={{
-                                            //     position: 'absolute',
-                                            //     top: '50%',
-                                            //     left: '50%',
-                                            //     width: 400,
-                                            //     height: 500,
-                                            //     transform: 'translate(-50%, -50%)',
-                                            //     padding: 15,
-                                            //     border: '1px solid'
-                                            // }}
-                                        >
-                                            See all products.
-                                        </Link>
+
+                                    <div className='slide-container__content'>
+                                        {showCard ?
+                                            <Link className='home-card' to='/product'>
+                                                See all products.
+                                            </Link>
+                                            : null}
                                     </div>
-                                    <div style={{ flexBasis: '33.33%', position: 'relative' }}>Space</div>
-                                    <div style={{ flexBasis: '33.33%', position: 'relative' }}>Space</div>
+                                    <div className='slide-container__content'/>
+                                    <div className='slide-container__content'/>
                                 </div>
                             </Tween>
                         </div>

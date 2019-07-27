@@ -2,23 +2,23 @@
     padding: 0;
     margin: 0;
     font-family: 'Courier New', Courier, monospace;
-    fill: currentColor;
     box-sizing: border-box;
     outline: none;
-    // font-size: 16px;
-    &::-webkit-scrollbar {
-        display: none;
-    }
     overscroll-behavior: none;
     -webkit-overflow-scrolling: touch;
     scroll-behavior: smooth;
-    color: currentColor;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 body {
     background-color: #151515;
     color: whitesmoke;
     user-select: none;
+    fill: currentColor;
+    color: currentColor;
 }
 
 a {
@@ -53,24 +53,23 @@ a {
     z-index: 1001;
     background-color: none;
     text-decoration: none;
-    transition: top 500ms cubic-bezier(1, 0, 0, 1);
+    text-transform: capitalize;
+    transition: 500ms ease;
+
+    &:hover {
+        background-color: rgba(255, 77, 107, 1);
+        border-radius: 50px;
+    }
 }
 
 .home-active {
-    // background-color: blue;
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-position: under;
+    // text-decoration: underline;
+    // text-decoration-style: dotted;
+    // text-underline-position: under;
+    border-radius: 50px;
 }
 
 .main-menu {
-    // position: fixed;
-    // width: 400px;
-    // min-height: 500px;
-    // top: calc(50% - 250px);
-    // left: 40px;
-    // border: 1px solid;
-    cursor: url('./assets/images/icons/outline-pan_tool-24px.svg'), auto;
     z-index: 1001;
     background-color: transparent;
     transition: background-color 500ms ease;
@@ -84,13 +83,11 @@ a {
 
         &__logo {
             font-size: 18px;
-            // text-transform: uppercase;
-            // letter-spacing: 15px;
         }
     }
 
     &__content {
-        padding: 15px;
+        // padding: 15px;
     }
 
     &:hover {
@@ -119,14 +116,66 @@ a {
     position: absolute;
     min-height: 100vh;
     min-width: 100vw;
+    background-color: inherit;
+    color: currentColor;
     transition: opacity 500ms cubic-bezier(1, 0, 0, 1);
+
+    &-enter,
+    &-enter-active {
+        opacity: 0;
+    }
+
+    &-enter-done,
+    &-exit {
+        opacity: 1;
+    }
+
+    &-exit-active,
+    &-exit-done {
+        opacity: 0;
+    }
 }
-.container-enter, .container-enter-active {
-    opacity: 0;
-}
-.container-enter-done, .container-exit {
-    opacity: 1;
-}
-.container-exit-active, .container-exit-done {
-    opacity: 0;
+
+.border {
+    @mixin default {
+        position: fixed;
+        z-index: 1002;
+        transition: 500ms cubic-bezier(1, 0, 0, 1);
+    }
+
+    &-top {
+        @include default();
+        top: 40px;
+        left: 0px;
+        right: 0px;
+        height: 1px;
+        border-bottom: 1px solid;
+    }
+
+    &-bottom {
+        @include default();
+        bottom: 40px;
+        left: 0px;
+        right: 0px;
+        height: 1px;
+        border-top: 1px solid;
+    }
+
+    &-right {
+        @include default();
+        top: 0px;
+        right: 40px;
+        bottom: 0px;
+        width: 1px;
+        border-left: 1px solid;
+    }
+
+    &-left {
+        @include default();
+        top: 0px;
+        left: 40px;
+        bottom: 0px;
+        width: 1px;
+        border-right: 1px solid;
+    }
 }

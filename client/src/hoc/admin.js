@@ -3,33 +3,24 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { auth } from '../store/actions/actions_user';
 
-export default function (Composed, reload, adminRoute = null) {
+export default function (Composed) {
     class Admin extends Component {
-        state = {
-            loading: true
-        }
+        state = { loading: true }
         componentDidMount = () => {
-            this.props.dispatch(auth()).then(response =>{
+            this.props.dispatch(auth()).then(response => {
                 let user = this.props.user.userData;
 
-                if(!user.isAdmin){
+                if (!user.isAdmin) {
                     this.props.history.push('/')
-                } 
+                }
                 setTimeout(() => {
-                    this.setState({loading:false})
+                    this.setState({ loading: false })
                 }, 500);
             })
         };
 
-        // componentWillUnmount = () => {
-        //     this.props.dispatch(adminChecker(false))
-        // };
-        
-
         render() {
-            if (this.state.loading) {
-                return <div className='container'>Are you an administrator?</div>
-            }
+            if (this.state.loading) return <div className='container'>Are you an administrator?</div>
             return (
                 <Composed {...this.props} user={this.props.user} />
             )

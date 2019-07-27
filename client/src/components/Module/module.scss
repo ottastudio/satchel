@@ -30,6 +30,7 @@
         z-index: 5;
         border-bottom: 1px solid;
         cursor: pointer;
+
         svg {
             position: absolute;
             top: 50%;
@@ -38,7 +39,7 @@
             transition: 500ms cubic-bezier(1, 0, 0, 1);
         }
     }
-    
+
     &__icon-account {
         left: 0px;
         width: 100%;
@@ -47,6 +48,7 @@
         z-index: 5;
         border-bottom: 1px solid;
         cursor: pointer;
+
         svg {
             position: absolute;
             top: 50%;
@@ -64,6 +66,7 @@
         z-index: 5;
         border-bottom: 1px solid;
         cursor: pointer;
+
         svg {
             position: absolute;
             top: 50%;
@@ -103,12 +106,14 @@
                 cursor: pointer;
 
                 &:hover {
-                    background-color: #009688;
+                    background-color: rgba(255, 77, 107, 1);
+                    border-radius: 50px;
                 }
             }
 
             .active {
-                background-color: #009688;
+                background-color: rgba(255, 77, 107, 1);
+                border-radius: 50px;
             }
 
         }
@@ -116,6 +121,26 @@
 
     &:hover {
         background-color: #151515;
+    }
+
+    &-enter {
+        width: 40px;
+        height: 40px;
+    }
+
+    &-enter-active {
+        width: 400px;
+        height: 40px;
+    }
+
+    &-enter-done {
+        width: 400px;
+        height: 500px;
+    }
+
+    &-exit {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -141,6 +166,7 @@
         z-index: 5;
         border-bottom: 1px solid;
         cursor: pointer;
+
         svg {
             position: absolute;
             top: 50%;
@@ -163,41 +189,25 @@
         box-sizing: border-box;
         font-size: inherit;
         padding: 0px 15px;
-        // border-right: 1px solid;
         transition: 500ms cubic-bezier(1, 0, 0, 1);
 
         &::placeholder {
             color: currentColor;
         }
     }
-}
 
-.module-enter {
-    width: 40px;
-    height: 40px;
-}
+    &-enter {
+        width: 40px;
+        height: 40px;
+    }
 
-.module-enter-active {
-    width: 400px;
-    height: 40px;
-}
+    &-enter-active {
+        width: 400px;
+        height: 40px;
+    }
 
-.module-enter-done {
-    width: 400px;
-    height: 500px;
-}
-
-.module-search-enter {
-    width: 40px;
-    height: 40px;
-}
-
-.module-search-enter-active {
-    width: 400px;
-    height: 40px;
-}
-
-.module-search-enter-done {
-    width: 400px;
-    height: 40px;
+    &-enter-done {
+        width: 400px;
+        height: 40px;
+    }
 }

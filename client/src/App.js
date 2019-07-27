@@ -1,38 +1,33 @@
-// eslint-disable-next-line
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+// import Loader from './components/utils/Loader';
 import Layout from './hoc/layout';
 import { Route } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
+
+// COMPONENTS
 import Home from './components/Home';
+
+// PRODUCT PAGES
 import Product from './components/Product';
-import Dashboard from './components/User';
-// import Loader from './components/utils/Loader';
+import ProductDetail from './components/Product/Detail';
+
+// AUTH PAGES
 import authentication from './hoc/authentication';
+import Dashboard from './components/User';
 import Account from './components/User/Account';
-import Settings from './components/User/Admin/Settings';
+
+// ADMIN PAGES
 import admin from './hoc/admin';
 import Products from './components/User/Admin/Products';
-
-// const useWindowWidth = () => {
-//     const [width, setWidth] = useState(window.innerWidth);
-//     useEffect(() => {
-//         const handleResize = () => setWidth(window.innerWidth);
-//         window.addEventListener('resize', handleResize);
-
-//         return () => {
-//             window.removeEventListener('resize', handleResize);
-//         }
-//     })
-//     console.log(width);
-//     return width;
-// }
+import Settings from './components/User/Admin/Settings';
 
 const App = (props) => {
     // const [loading, setLoading] = useState(true);
 
     const routes = [
         { path: '/', name: 'Home', exact: true, Component: authentication(Home, null) },
-        { path: '/product/:brand/:category/:usable/:name/:id', name: 'Product', exact: true, Component: authentication(Product, null) },
+        { path: '/product', name: 'Product', exact: true, Component: authentication(Product, null) },
+        { path: '/product/:brand/:category/:usable/:name/:id', name: 'Product Detail', exact: true, Component: authentication(ProductDetail, null) },
         { 
             path: '/user/dashboard', name: 'Dashboard', exact: false, Component: authentication(Dashboard, true),
             subRoutes: [
@@ -69,3 +64,17 @@ const App = (props) => {
 };
 
 export default App;
+
+// const useWindowWidth = () => {
+//     const [width, setWidth] = useState(window.innerWidth);
+//     useEffect(() => {
+//         const handleResize = () => setWidth(window.innerWidth);
+//         window.addEventListener('resize', handleResize);
+
+//         return () => {
+//             window.removeEventListener('resize', handleResize);
+//         }
+//     })
+//     console.log(width);
+//     return width;
+// }

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { getBrands, getCategories, getGenders, getSeries, getUsables } from '../../../store/actions/actions_products';
 import { toggleDashboardMenuFalse } from '../../../store/actions/actions_ui';
+import { toggleProduct, toggleBrand, toggleCategory, toggleUsable } from '../../../store/actions/actions_adminUI';
 import { populateOptionFields } from '../../utils/Form/actions_form';
 
 class Products extends Component {
@@ -124,9 +125,22 @@ class Products extends Component {
 
     render() {
         // console.log(this.state.formData);
+        const pages = [
+            { name: 'manage product', click: () => this.props.dispatch(toggleProduct()) },
+            { name: 'manage brands', click: () => this.props.dispatch(toggleBrand()) },
+            { name: 'manage categories', click: () => this.props.dispatch(toggleCategory()) },
+            { name: 'manage usable', click: () => this.props.dispatch(toggleUsable()) },
+        ]
         return (
-            <Container>
+            <Container style={{ padding: '120px 40px 40px' }}>
                 Products
+                {
+                    pages.map(({ name, click }) => (
+                        <div onClick={click} key={name}>{name}</div>
+                    ))
+                }
+
+                {/* <div onClick={() => this.props.dispatch(toggleProduct())}>Manage Products.</div> */}
             </Container>
         );
     }

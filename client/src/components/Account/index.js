@@ -6,6 +6,8 @@ import Login from './Login';
 import Register from './Register';
 import UserAuth from './UserAuth';
 
+import './account.scss';
+
 const defStyle = { opacity: 0, transition: '500ms cubic-bezier(1,0,0,1)' }
 const transStyle = {
     entering: { opacity: 1 },

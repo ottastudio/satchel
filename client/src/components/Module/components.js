@@ -41,7 +41,10 @@ const ModuleContainer = props => {
                         </div>
                         <Transition
                             in={props.state}
-                            timeout={500}
+                            timeout={{
+                                enter: 1000,
+                                exit: 250
+                            }}
                             mountOnEnter unmountOnExit
                         >
                             {state => (
@@ -79,7 +82,10 @@ const ModuleContainer = props => {
                         </div>
                         <Transition
                             in={props.state}
-                            timeout={500}
+                            timeout={{
+                                enter: 1000,
+                                exit: 250
+                            }}
                             mountOnEnter unmountOnExit
                         >
                             {state => (
@@ -116,7 +122,10 @@ const ModuleContainer = props => {
                         </div>
                         <Transition
                             in={props.state}
-                            timeout={500}
+                            timeout={{
+                                enter: 1000,
+                                exit: 250
+                            }}
                             mountOnEnter unmountOnExit
                         >
                             {state => (
@@ -137,7 +146,10 @@ const ModuleContainer = props => {
                     <div className='module-search'>
                         <Transition
                             in={props.state}
-                            timeout={500}
+                            timeout={{
+                                enter: 1000,
+                                exit: 250
+                            }}
                             mountOnEnter unmountOnExit
                         >
                             {state => (

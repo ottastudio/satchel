@@ -4,6 +4,7 @@ import { getBrands } from '../../store/actions/actions_products';
 
 import { NavLink, Link } from 'react-router-dom';
 import { Tween, SplitLetters } from 'react-gsap';
+import { globalLink, companyLink } from '../utils/links';
 
 const Menu = (props) => {
     const [state, setState] = useState({ loading: true })
@@ -12,7 +13,7 @@ const Menu = (props) => {
         setTimeout(() => {
             setState({ loading: false })
         }, 1000);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const renderLink = (brands) => (
@@ -29,15 +30,45 @@ const Menu = (props) => {
 
     return (
         <div className='main-menu'>
-            <header className='main-menu__header'>
+            {/* <header className='main-menu__header'>
                 <Link to='/' className='main-menu__header__logo'>
                     <Tween staggerFrom={{ display: 'none' }} duration={7} stagger={0.3}>
                         <SplitLetters><span>Satchel</span></SplitLetters>
                     </Tween>
                 </Link>
-            </header>
+            </header> */}
             <div className='main-menu__content'>
-                {state.loading ? 'loading...' : renderLink(props.products.brands)}
+                {/* {state.loading ? 'loading...' : renderLink(props.products.brands)} */}
+                <div className='account-admin-link'>
+                    {
+                        globalLink.map(({ link, title, exact }) => (
+                            <NavLink
+                                key={title}
+                                to={link}
+                                exact={exact}
+                                activeClassName='account-admin-link__active'
+                                className='account-admin-link__link'
+                            >
+                                {title}
+                            </NavLink>
+                        ))
+                    }
+                </div>
+                <div className='account-admin-link'>
+                    {
+                        companyLink.map(({ link, title, exact }) => (
+                            <NavLink
+                                key={title}
+                                to={link}
+                                exact={exact}
+                                activeClassName='account-admin-link__active'
+                                className='account-admin-link__link'
+                            >
+                                {title}
+                            </NavLink>
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

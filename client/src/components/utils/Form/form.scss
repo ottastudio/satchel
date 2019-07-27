@@ -9,9 +9,17 @@
         align-items: center;
     }
 
+    .footnote {
+        margin-top: 15px;
+        font-size: 12px;
+
+        a {
+            text-decoration: underline;
+            text-underline-position: under;
+        }
+    }
+
     form {
-        // border-top: 1px solid;
-        padding: 5px;
         .form-block {
             color: inherit;
             margin-bottom: 15px;
@@ -47,7 +55,7 @@
     }
 
     button {
-        height: 30px;
+        height: 40px;
         width: 100%;
         background: none;
         border: 1px solid inherit;
@@ -57,10 +65,34 @@
         transition: 500ms ease;
 
         &:disabled {
-            background-color: rgba(255,255,255,0.3);
+            background-color: rgba(255,255,255,0.1);
             color: rgba(0,0,0,0.3);
             border: 1px solid;
             cursor: auto;
+            &:hover {
+                background-color: rgba(255, 77, 107, 0.1);
+                border-radius: 50px;
+            }
         }
+        &:hover {
+            background-color: rgba(255, 77, 107, 1);
+            border-radius: 50px;
+        }
+
+    }
+
+    .dialog {
+        height: 40px;
+        width: 100%;
+        border: 1px solid;
+        color: inherit;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 500ms ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: blue;
+        text-transform: uppercase;
     }
 }

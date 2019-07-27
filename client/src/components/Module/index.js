@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+// eslint-disable-next-line
+import React, { useRef, useEffect } from 'react';
 import './module.scss';
 import { ModuleContainer } from './components';
 import useOnClickOutside from '../utils/hooks';
@@ -15,6 +16,13 @@ import { connect } from 'react-redux';
 const Module = (props) => {
     const ref = useRef();
     useOnClickOutside(ref, () => props.dispatch(turnAllFalse()));
+
+
+    // useEffect(() => {
+    //     props.dispatch(toggleMenuUI())
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
+
 
     return (
         <div className='module-wrapper' ref={ref}>

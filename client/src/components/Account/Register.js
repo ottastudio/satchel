@@ -5,6 +5,7 @@ import { update, generateData, isFormValid } from '../utils/Form/actions_form';
 import { connect } from 'react-redux';
 import { registerUser } from '../../store/actions/actions_user';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Register extends Component {
     state = {
@@ -154,7 +155,7 @@ class Register extends Component {
             this.setState({ formError: true })
             setTimeout(() => {
                 this.setState({ formError: false })
-            }, 1500);
+            }, 3000);
         }
     }
     render() {
@@ -219,6 +220,9 @@ class Register extends Component {
                             </button>
                     }
                 </form>
+                <div className='footnote'>
+                    By creating an account, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders and more. Also you are agreed with our <Link to='terms-conditions'>terms &amp; conditions.</Link>
+                </div>
             </div>
         );
 

@@ -248,14 +248,18 @@ app.get('/api/users/auth', auth, (req, res) => {
         firstname: req.user.firstname,
         lastname: req.user.lastname,
         role: req.user.role,
-        history: req.user.history
+        history: req.user.history,
+        gender: req.user.gender
     })
 })
 // GET ALL USERS
 app.get('/api/users', auth, admin, (req, res) => {
-    User.find({}, (err, user) => {
+    User.
+    find({}).
+    populate('gender').
+    exec((err, docs) => {
         if (err) return req.status(400).send(err);
-        res.status(200).send(user);
+        return res.status(200).send(docs)
     })
 })
 // REGISTER

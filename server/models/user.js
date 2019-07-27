@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
@@ -27,6 +28,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         maxlength: 100
+    },
+    gender: {
+        type: Schema.Types.ObjectId,
+        ref: 'Gender'
     },
     cart: {
         type: Array,
