@@ -5,7 +5,11 @@
     z-index: 1000;
     display: flex;
     color: inherit;
-    transition: background-color 500ms ease, left 500ms cubic-bezier(1, 0, 0, 1), transform 500ms cubic-bezier(1, 0, 0, 1);
+    transition: 
+        background-color 500ms ease, 
+        left 500ms cubic-bezier(1, 0, 0, 1), 
+        top 500ms cubic-bezier(1, 0, 0, 1), 
+        transform 500ms cubic-bezier(1, 0, 0, 1);
 
     &:hover {
         z-index: 1010;

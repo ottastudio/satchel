@@ -1,10 +1,11 @@
 import React from 'react';
+import { DashboardLayout } from '../../hoc/global';
 
-const Account = () => {
+const Account = (props) => {
     return (
-        <div>
+        <DashboardLayout name='account'>
             Account
-        </div>
+        </DashboardLayout>
     );
 };
 

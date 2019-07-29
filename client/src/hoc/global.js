@@ -2,8 +2,11 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 
 const Container = (props) => {
+    const name = props.name ? props.name : null;
+    const className = props.className ? (`container ${props.className}`) : 'container';
+    const style = props.style ? props.style : null;
     return (
-        <div className={`container ${props.className ? props.className : ''}`} style={props.style}>
+        <div name={name} className={className} style={style}>
             {props.children}
         </div>
     );
@@ -21,4 +24,15 @@ const SubRoutes = (route) => {
     );
 };
 
-export { Container, SubRoutes };
+const DashboardLayout = props => {
+    const name = props.name ? props.name : null;
+    const className = props.className ? (`dashboard ${props.className}`) : 'dashboard';
+    const style = props.style ? props.style : null;
+    return (
+        <div name={name} className={className} style={style}>
+            {props.children}
+        </div>
+    )
+}
+
+export { Container, SubRoutes, DashboardLayout };

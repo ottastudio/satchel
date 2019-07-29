@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { DashboardLayout } from '../../hoc/global';
+import {connect} from 'react-redux';
+import {toggleAccountUI} from '../../store/actions/actions_ui';
 
 const HomeDashboard = (props) => {
+    console.log(props);
+    // useEffect(() => {
+    //     props.dispatch(toggleAccountUI())
+    // }, [])
     return (
-        <div
-            style={{
-                padding: '120px 40px 40px',
-                minHeight: '200vh'
-            }}
-        >
+        <DashboardLayout name='home'>
             <div>{props.user.userData.firstname} {props.user.userData.lastname}</div>
-        </div>
+            <div>{props.user.userData.email}</div>
+        </DashboardLayout>
     );
 };
 
-export default HomeDashboard;
+export default connect()(HomeDashboard);

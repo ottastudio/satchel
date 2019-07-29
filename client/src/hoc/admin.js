@@ -20,7 +20,7 @@ export default function (Composed) {
         };
 
         render() {
-            if (this.state.loading) return <div className='container'>Are you an administrator?</div>
+            if (this.state.loading) return <div className='dashboard'>Are you an administrator?</div>
             return (
                 <Composed {...this.props} user={this.props.user} />
             )

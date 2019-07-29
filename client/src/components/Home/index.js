@@ -9,6 +9,7 @@ import { getProductsByArrival } from '../../store/actions/actions_products';
 import { Controller, Scene } from 'react-scrollmagic';
 import { Tween, SplitLetters } from 'react-gsap';
 import { Card, CoverLetter } from './components';
+import SEO from '../utils/seo';
 // import { toggleSearchUI } from '../../store/actions/actions_ui';
 
 const Home = (props) => {
@@ -47,7 +48,8 @@ const Home = (props) => {
     )
 
     return (
-        <Container>
+        <Container name='home'>
+            <SEO title={`Hei, I'm`} />
             <Controller>
                 <Scene duration='1000%' triggerHook='onLeave' pin>
                     {(progress, event) => (

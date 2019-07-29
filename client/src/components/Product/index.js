@@ -1,5 +1,7 @@
 import React, {useEffect} from 'react';
 import { Container } from '../../hoc/global';
+import SEO from '../utils/seo';
+import './product.scss'
 
 const Product = () => {
     useEffect(() => {
@@ -11,7 +13,8 @@ const Product = () => {
         }
     }, [])
     return (
-        <Container>
+        <Container name='products'>
+            <SEO title='All Products by' />
             Product
         </Container>
     );

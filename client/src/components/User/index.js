@@ -22,7 +22,7 @@ const Dashboard = (props) => {
     }, [])
 
     return (
-        <Container>
+        <Container name='user'>
 
             {
                 props.location.pathname === '/user/dashboard' ?

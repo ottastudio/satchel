@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container } from '../../../hoc/global';
+import { DashboardLayout } from '../../../hoc/global';
 import { connect } from 'react-redux';
 
 import { getBrands, getCategories, getGenders, getSeries, getUsables } from '../../../store/actions/actions_products';
@@ -132,7 +132,7 @@ class Products extends Component {
             { name: 'manage usable', click: () => this.props.dispatch(toggleUsable()) },
         ]
         return (
-            <Container style={{ padding: '120px 40px 40px' }}>
+            <DashboardLayout style={{ padding: '120px 40px 40px' }}>
                 Products
                 {
                     pages.map(({ name, click }) => (
@@ -141,7 +141,7 @@ class Products extends Component {
                 }
 
                 {/* <div onClick={() => this.props.dispatch(toggleProduct())}>Manage Products.</div> */}
-            </Container>
+            </DashboardLayout>
         );
     }
 }

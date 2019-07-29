@@ -1,10 +1,11 @@
 import React from 'react';
+import { DashboardLayout } from '../../../hoc/global';
 
 const Settings = (props) => {
     return (
-        <div className='container'>
+        <DashboardLayout name='settings'>
             Settings
-        </div>
+        </DashboardLayout>
     );
 };
 
