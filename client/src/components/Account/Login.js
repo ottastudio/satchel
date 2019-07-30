@@ -4,7 +4,6 @@ import { update, generateData, isFormValid } from '../utils/Form/actions_form';
 
 import { connect } from 'react-redux';
 import { loginUser } from '../../store/actions/actions_user';
-import { turnAllFalse } from '../../store/actions/actions_ui';
 import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
@@ -73,9 +72,6 @@ class Login extends Component {
                 if (res.payload.loginSuccess) {
                     setTimeout(() => {
                         this.setState({ formSuccess: true })
-                        // setTimeout(() => {
-                        //     this.props.dispatch(turnAllFalse())
-                        // }, 1000);
                     }, 200);
                     setTimeout(() => {
                         this.props.history.push('/user/dashboard')

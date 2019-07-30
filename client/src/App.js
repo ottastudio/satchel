@@ -21,7 +21,7 @@ import admin from './hoc/admin';
 import Products from './components/User/Admin/Products';
 import Settings from './components/User/Admin/Settings';
 
-const App = (props) => {
+const App = () => {
     // const [loading, setLoading] = useState(true);
 
     const routes = [

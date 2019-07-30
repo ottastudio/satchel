@@ -1,4 +1,4 @@
-import React, { forwardRef, useState, Fragment } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Tween, SplitLetters } from 'react-gsap';
 import { Controller, Scene } from 'react-scrollmagic';
 import { Link } from 'react-router-dom';
@@ -61,7 +61,7 @@ const Card = forwardRef((props, ref) => {
                                 stagger={0.05}
                                 duration={1}
                                 wrapper={
-                                    <Link className='link' to={`/product/${props.brand.name}/${props.category.name}/${props.usable.name}/${props.name}/${props._id}`}/>
+                                    <Link className='link' to={`/product/${props.brand.name}/${props.category.name}/${props.usable.name}/${props.name}/${props._id}`} />
                                 }
                             >
                                 <SplitLetters><span>{`View ${props.name}`}</span></SplitLetters>
@@ -108,7 +108,7 @@ const CoverLetter = (props) => {
                             >
                                 <SplitLetters>
                                     <span>
-                                        {`Dear, ${props.user.userData.firstname ? `${props.user.userData.firstname}'s` : 'our lovely customers' }.`}
+                                        {`Dear, ${props.user.userData.firstname ? `${props.user.userData.firstname}'s` : 'our lovely customers'}.`}
                                         {/* Dear, {props.user.userData.firstname ? `${props.user.userData.firstname}'s` : 'our lovely Customers'}. */}
                                     </span>
                                 </SplitLetters>

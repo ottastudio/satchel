@@ -7,22 +7,18 @@ import { connect } from 'react-redux';
 import { getProductsByArrival } from '../../store/actions/actions_products';
 
 import { Controller, Scene } from 'react-scrollmagic';
-import { Tween, SplitLetters } from 'react-gsap';
+import { Tween } from 'react-gsap';
 import { Card, CoverLetter } from './components';
 import SEO from '../utils/seo';
-// import { toggleSearchUI } from '../../store/actions/actions_ui';
 
 const Home = (props) => {
     const [showCard, setShowCard] = useState(false)
 
     useEffect(() => {
         props.dispatch(getProductsByArrival())
-        // props.dispatch(toggleSearchUI())
         window.scrollTo(0, 0)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    // const noScroll = () => window.scrollTo(0, 0)
 
     const ref = useRef();
 
@@ -37,8 +33,8 @@ const Home = (props) => {
                     key={i}
                 >
                     <div className='slide-container__content' key={i}>
-                        {showCard ? 
-                            <Card ref={ref} totalProgress={progress} event={event} index={i} {...item} />    
+                        {showCard ?
+                            <Card ref={ref} totalProgress={progress} event={event} index={i} {...item} />
                             : null
                         }
                     </div>
@@ -71,8 +67,8 @@ const Home = (props) => {
                                             </Link>
                                             : null}
                                     </div>
-                                    <div className='slide-container__content'/>
-                                    <div className='slide-container__content'/>
+                                    <div className='slide-container__content' />
+                                    <div className='slide-container__content' />
                                 </div>
                             </Tween>
                         </div>

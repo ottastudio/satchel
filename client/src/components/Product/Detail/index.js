@@ -9,8 +9,8 @@ import { Controller, Scene } from 'react-scrollmagic';
 import { Tween } from 'react-gsap';
 import SEO from '../../utils/seo';
 
-import jpg1 from '../../../assets/images/sample1.jpg';
-import jpg2 from '../../../assets/images/sample2.jpg';
+// import jpg1 from '../../../assets/images/sample1.jpg';
+// import jpg2 from '../../../assets/images/sample2.jpg';
 import jpg3 from '../../../assets/images/sample3.jpg';
 
 class ProductDetail extends Component {
@@ -54,13 +54,6 @@ class ProductDetail extends Component {
             return string.charAt(0).toUpperCase() + string.slice(1)
         }
 
-        const style = {
-            li: {
-                position: 'relative',
-                flexBasis: '33.33%',
-            }
-        }
-
         if (this.state.loading) {
             return null
         }
@@ -69,10 +62,10 @@ class ProductDetail extends Component {
                 <SEO title={`${capitalize(article.name)} by`} />
                 <div className='product-info'>
                     <div className='product-info__header'>
-                        <div className='product-info__header-name'>{capitalize(article.name)},<br/>by {capitalize(article.brand.name)}.</div>
+                        <div className='product-info__header-name'>{capitalize(article.name)},<br />by {capitalize(article.brand.name)}.</div>
                         <div className='product-info__header-price'>Idr. {article.price}</div>
                     </div>
-                    <div className='product-info__category' style={{fontSize: 24}}>
+                    <div className='product-info__category' style={{ fontSize: 24 }}>
                         {/* {capitalize(article.category.name)} for {article.gender.name}, on {capitalize(article.series.name)} series. */}
                         {capitalize(article.category.name)} for {article.gender.name}{article.series ? `, on ${capitalize(article.series.name)} series.` : null}
                     </div>
@@ -89,7 +82,7 @@ class ProductDetail extends Component {
                                 >
                                     <ul className='slide-container'>
                                         <li className='slide-container__content' />
-                                        <li 
+                                        <li
                                             className='slide-container__content'
                                             style={{
                                                 flexBasis: '66.66%',
@@ -98,7 +91,7 @@ class ProductDetail extends Component {
                                                 backgroundSize: 'cover'
                                             }}
                                         />
-                                        <li 
+                                        <li
                                             className='slide-container__content'
                                             style={{
                                                 flexBasis: '66.66%',
@@ -107,7 +100,7 @@ class ProductDetail extends Component {
                                                 backgroundSize: 'cover'
                                             }}
                                         />
-                                        <li 
+                                        <li
                                             className='slide-container__content'
                                             style={{
                                                 flexBasis: '66.66%',
@@ -117,11 +110,11 @@ class ProductDetail extends Component {
                                             }}
                                         />
                                         <li className='slide-container__content'>
-                                            <div style={{position: 'relative', padding: 40}}>
-                                                <span 
+                                            <div style={{ position: 'relative', padding: 40 }}>
+                                                <span
                                                     style={{
-                                                        height: 40, 
-                                                        border: '1px solid', 
+                                                        height: 40,
+                                                        border: '1px solid',
                                                         padding: '0px 15px',
                                                         display: 'inline-flex',
                                                         alignItems: 'center'
@@ -131,17 +124,21 @@ class ProductDetail extends Component {
                                         </li>
 
                                         {/* Spacer fixed and should be exsit */}
-                                        <li className='slide-container__content'/>
-                                        <li className='slide-container__content'/>
+                                        <li className='slide-container__content' />
+                                        <li className='slide-container__content' />
                                     </ul>
                                 </Tween>
                             </div>
                         )}
                     </Scene>
                 </Controller>
-                <div 
+                <div
                     className='product-detail__add-cart'
-                    onClick={() => this.props.dispatch(toggleCartUI())}
+                    onClick={
+                        () => {
+                            this.props.dispatch(toggleCartUI())
+                        }
+                    }
                 >Add to cart</div>
             </Container>
         );

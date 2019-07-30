@@ -3,7 +3,6 @@ import { DashboardLayout } from '../../../hoc/global';
 import { connect } from 'react-redux';
 
 import { getBrands, getCategories, getGenders, getSeries, getUsables } from '../../../store/actions/actions_products';
-import { toggleDashboardMenuFalse } from '../../../store/actions/actions_ui';
 import { toggleProduct, toggleBrand, toggleCategory, toggleUsable } from '../../../store/actions/actions_adminUI';
 import { populateOptionFields } from '../../utils/Form/actions_form';
 
@@ -114,7 +113,6 @@ class Products extends Component {
             const newFormData = populateOptionFields(formData, this.props.products.usables, 'usable');
             this.updateFields(newFormData)
         })
-        // this.props.dispatch(toggleDashboardMenuFalse())
     }
 
     updateFields = (newFormdata) => {
