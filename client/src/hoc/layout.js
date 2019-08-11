@@ -76,7 +76,6 @@ const Layout = (props) => {
                     <Footer {...site} style={{ ...footerTransition[state] }} />
                 )}
             </Transition>
-            {/* <Footer {...site} /> */}
         </Fragment>
     );
 };
