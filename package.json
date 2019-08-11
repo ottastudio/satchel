@@ -12,7 +12,7 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "engines": {
-    "node": "12.6.0"
+    "node": "12.8.0"
   },
   "keywords": [
     "fashion",

@@ -1,10 +1,11 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 
 const app = express();
 const mongoose = require('mongoose');
-require('dotenv').config();
 
 app.use(express.static('client/build'));
 
@@ -255,12 +256,12 @@ app.get('/api/users/auth', auth, (req, res) => {
 // GET ALL USERS
 app.get('/api/users', auth, admin, (req, res) => {
     User.
-    find({}).
-    populate('gender').
-    exec((err, docs) => {
-        if (err) return req.status(400).send(err);
-        return res.status(200).send(docs)
-    })
+        find({}).
+        populate('gender').
+        exec((err, docs) => {
+            if (err) return req.status(400).send(err);
+            return res.status(200).send(docs)
+        })
 })
 // REGISTER
 app.post('/api/users/register', (req, res) => {
