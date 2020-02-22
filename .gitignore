@@ -4,5 +4,5 @@
 .vscode
 .env
 
-_client
-_server
+/_client
+/_server
