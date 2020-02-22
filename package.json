@@ -1,19 +1,8 @@
 {
   "name": "satchel",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Satchel is a bla bla bla...",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/server.js",
-    "server": "nodemon server/server.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\" ",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
-  },
-  "engines": {
-    "node": "12.8.0"
-  },
   "keywords": [
     "fashion",
     "ecommerce"
@@ -21,18 +10,16 @@
   "author": "Taufik Oktama",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^3.0.6",
-    "body-parser": "^1.19.0",
-    "cloudinary": "^1.14.0",
-    "concurrently": "^4.1.1",
-    "cookie-parser": "^1.4.4",
-    "crypto-js": "^3.1.9-1",
     "dotenv": "^8.0.0",
-    "express": "^4.17.1",
-    "express-formidable": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
-    "moment": "^2.24.0",
-    "mongoose": "^5.6.5",
-    "multer": "^1.4.2"
+    "next": "^9.2.3-canary.9",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.4",
+    "@types/react": "^16.9.22",
+    "@types/react-dom": "^16.9.5",
+    "typescript": "^3.8.2"
   }
 }

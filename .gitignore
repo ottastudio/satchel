@@ -3,3 +3,6 @@
 /client/build
 .vscode
 .env
+
+_client
+_server
