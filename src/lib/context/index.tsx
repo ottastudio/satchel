@@ -1,11 +1,11 @@
 import { createContext, useContext } from "react";
-import { NavigationProvider } from "./NavigationContext";
+import { ToggleProvider } from "./ToggleContext";
 
 export const AppContext = createContext({});
 export const AppProvider: React.FC<{}> = ({ children }) => {
   return (
     <AppContext.Provider value={{}}>
-      <NavigationProvider>{children}</NavigationProvider>
+      <ToggleProvider>{children}</ToggleProvider>
     </AppContext.Provider>
   );
 };
