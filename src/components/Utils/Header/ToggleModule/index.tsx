@@ -4,20 +4,18 @@ const ToggleModule: React.FC<{
   label: JSX.Element;
 }> = ({ onClick, state, label, children }) => {
   return (
-    <div
-      style={{
-        marginRight: -1,
-        height: 40,
-        width: state ? 320 : 40,
-        borderBottom: "1px solid",
-        position: "relative",
-        transition: "width 300ms cubic-bezier(1,0,0,1)"
-      }}
-    >
+    <div style={{ width: state ? 320 : 40 }}>
       <button onClick={onClick}>{label}</button>
-
       {state && children}
+
       <style jsx>{`
+        div {
+          position: relative;
+          margin-right: -1;
+          height: 40px;
+          border-bottom: 1px solid;
+          transition: width 300ms cubic-bezier(1, 0, 0, 1);
+        }
         button {
           width: 40px;
           height: 40px;
