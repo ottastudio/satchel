@@ -1,3 +1,4 @@
+import Router from "next/router";
 import {
   createContext,
   useContext,
@@ -5,7 +6,6 @@ import {
   Dispatch,
   useEffect
 } from "react";
-import Router from "next/router";
 
 type ToggleReducerAction = {
   type:
@@ -91,17 +91,10 @@ export const ToggleContext = createContext<ToggleProps>({
 export const ToggleProvider: React.FC<{}> = ({ children }) => {
   const [toggle, dispatch] = useReducer(ToggleReducer, initialState);
 
-  const allFalse = () => {
+  useEffect(() => {
     Router.events.on("routeChangeComplete", () =>
       dispatch({ type: "ALL_FALSE" })
     );
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      allFalse();
-    }, 300);
-    return () => clearTimeout(timer);
   }, []);
 
   return (
