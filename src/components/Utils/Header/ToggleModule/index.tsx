@@ -10,7 +10,7 @@ const ToggleModule: React.FC<{
         state ? "module-wrapper module-wrapper__active" : "module-wrapper"
       }
     >
-      <button name={`toggle-${name}`} role="toggle" onClick={onClick}>
+      <button name={`toggle-${name}`} onClick={onClick}>
         {label}
       </button>
       {state && children}
