@@ -28,21 +28,26 @@ const App: NextPage<{
         :root {
           --prime-bg: #f5f5f5;
           --prime-cl: #000000;
+          --accent-low: rgba(255, 255, 255, 0.1);
+          --accent-hight: rgba(255, 255, 255, 0.3);
         }
         @media (prefers-color-scheme: dark) {
           :root {
             --prime-bg: #000000;
             --prime-cl: #f5f5f5;
+            --accent-low: rgba(255, 255, 255, 0.1);
+            --accent-hight: rgba(255, 255, 255, 0.3);
           }
         }
         @media (prefers-color-scheme: light) {
           :root {
             --prime-bg: #f5f5f5;
             --prime-cl: #000000;
+            --accent-low: rgba(0, 0, 0, 0.3);
+            --accent-hight: rgba(0, 0, 0, 0.4);
           }
         }
         * {
-          outline: none;
           box-sizing: border-box;
 
           font-family: "Courier Prime", Courier New, Courier, monospace;
