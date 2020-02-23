@@ -1,8 +1,9 @@
-import { NextPage } from "next";
+import { NextPage, NextPageContext } from "next";
 import Head from "next/head";
-export interface ErrorProps {}
 
-const Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
+const Error: NextPage<{ statusCode: number | undefined }> = ({
+  statusCode
+}) => {
   const messages = statusCode
     ? statusCode === 404
       ? `${statusCode} Page not found.`
@@ -40,7 +41,7 @@ const Error: NextPage<{ statusCode: number }> = ({ statusCode }) => {
   );
 };
 
-Error.getInitialProps = ({ res, err }) => {
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
   return { statusCode };
 };

@@ -9,15 +9,15 @@ const MenuModule: React.FC<{}> = () => {
   const { dispatch } = useToggleContext();
   const { asPath: pathFromRouter } = useRouter();
 
-  const wrapper = useRef();
+  const wrapper = useRef<HTMLDivElement>(null);
   useOnClickOutside(wrapper, () => dispatch({ type: "ALL_FALSE" }));
 
   const links = [
-    { href: "/", asPath: null, label: "Home" },
-    { href: "/product", asPath: null, label: "All Products" },
-    { href: "/lookbook", asPath: null, label: "Lookbook" },
-    { href: "/about", asPath: null, label: "About" },
-    { href: "/blog", asPath: null, label: "Blog" }
+    { href: "/", asPath: undefined, label: "Home" },
+    { href: "/product", asPath: undefined, label: "All Products" },
+    { href: "/lookbook", asPath: undefined, label: "Lookbook" },
+    { href: "/about", asPath: undefined, label: "About" },
+    { href: "/blog", asPath: undefined, label: "Blog" }
   ];
 
   const transitions = useTransition(links, item => item.label, {
