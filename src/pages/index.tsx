@@ -6,6 +6,7 @@ const Index: NextPage<{}> = () => {
     <div>
       <Head>
         <title>Helo, I'm Satchel.</title>
+        <meta name="description" content="Satchel is a bla bla bla..." />
       </Head>
       Index
     </div>
