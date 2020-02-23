@@ -10,12 +10,7 @@ const ToggleModule: React.FC<{
         state ? "module-wrapper module-wrapper__active" : "module-wrapper"
       }
     >
-      <button
-        aria-label={name}
-        aria-required="true"
-        name={`toggle-${name}`}
-        onClick={onClick}
-      >
+      <button aria-hidden="true" name={`toggle-${name}`} onClick={onClick}>
         {label}
       </button>
       {state && children}
