@@ -9,6 +9,11 @@
   ],
   "author": "Taufik Oktama",
   "license": "ISC",
+  "scripts": {
+    "dev": "rm -rf .next && next dev -p 3200",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
     "dotenv": "^8.0.0",
     "jsonwebtoken": "^8.5.1",
