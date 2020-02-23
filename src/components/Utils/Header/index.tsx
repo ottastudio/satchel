@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Fragment } from "react";
+import { useRouter } from "next/router";
 import { useToggleContext } from "../../../lib/context/ToggleContext";
 
 import ToggleModule from "./ToggleModule";
@@ -45,30 +47,42 @@ const Header: React.FC<{}> = () => {
     }
   ];
 
+  const { asPath } = useRouter();
+  const checker =
+    asPath === "/product" || asPath === "/product/[name]" ? true : false;
+
   return (
-    <header>
-      <Link href="/">
-        <a className="main-link">Satchel</a>
-      </Link>
-      {modules.map(({ label, state, onClick, children }, i: number) => (
-        <ToggleModule key={i} label={label} state={state} onClick={onClick}>
-          {children}
-        </ToggleModule>
-      ))}
+    <Fragment>
+      <div className="home-link">
+        <Link href="/">
+          <a>Satchel</a>
+        </Link>
+      </div>
+
+      <div
+        className="module-container"
+        style={{
+          left: checker ? "50%" : 139,
+          transform: checker ? "translateX(-50%)" : "translateX(0%)"
+        }}
+      >
+        {modules.map(({ label, state, onClick, children }, i: number) => (
+          <ToggleModule key={i} label={label} state={state} onClick={onClick}>
+            {children}
+          </ToggleModule>
+        ))}
+      </div>
 
       <style jsx>{`
-        header {
+        .home-link {
           position: fixed;
           top: 40px;
           left: 40px;
           z-index: 1000;
-          display: flex;
         }
         a {
           color: currentColor;
           text-decoration: none;
-        }
-        .main-link {
           border: 1px solid;
           height: 40px;
           width: 100px;
@@ -76,9 +90,20 @@ const Header: React.FC<{}> = () => {
           align-items: center;
           justify-content: center;
           margin-right: -1px;
+          font-size: 1.2rem;
+          padding-top: 2px;
+        }
+
+        .module-container {
+          display: flex;
+          position: fixed;
+          top: 40px;
+          transition: left 300ms cubic-bezier(1, 0, 0, 1),
+            transform 300ms cubic-bezier(1, 0, 0, 1);
+          z-index: 1000;
         }
       `}</style>
-    </header>
+    </Fragment>
   );
 };
 
