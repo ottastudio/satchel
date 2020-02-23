@@ -1,6 +1,7 @@
 import { NextPage, NextComponentType, NextPageContext } from "next";
 import { NextRouter } from "next/router";
 import { AppProvider } from "../lib/context";
+import Header from "../components/Utils/Header";
 
 const App: NextPage<{
   Component: NextComponentType;
@@ -9,6 +10,7 @@ const App: NextPage<{
 }> = ({ Component, pageProps, router }) => {
   return (
     <AppProvider>
+      <Header />
       <Component {...pageProps} key={router.asPath} />
 
       <style jsx global>{`
