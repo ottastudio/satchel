@@ -19,8 +19,10 @@ const App: NextPage<{
       <style jsx global>{`
         @font-face {
           font-family: "Courier Prime";
-          src: url("/static/courier_prime.woff2");
           font-style: normal;
+          src: local("Courier New"), local("Courier"),
+            url("/static/courier_prime.woff2") format("woff2");
+          font-display: swap;
         }
 
         :root {
