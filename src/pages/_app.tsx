@@ -10,7 +10,7 @@ const App: NextPage<{
 }> = ({ Component, pageProps, router }) => {
   return (
     <AppProvider>
-      <a className="skip-link" href="#">
+      <a className="skip-link" href="#container">
         Skip
       </a>
       <Header />
