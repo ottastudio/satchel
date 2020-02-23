@@ -10,6 +10,9 @@ const App: NextPage<{
 }> = ({ Component, pageProps, router }) => {
   return (
     <AppProvider>
+      <a className="skip-link" href="#">
+        Skip
+      </a>
       <Header />
       <Component {...pageProps} key={router.asPath} />
 
@@ -56,6 +59,16 @@ const App: NextPage<{
 
           transition: color, background-color, fill,
             300ms cubic-bezier(1, 0, 0, 1);
+        }
+
+        .skip-link {
+          position: absolute;
+          top: -40px;
+          left: 0px;
+          z-index: 100;
+        }
+        .skip-link:focus {
+          top: 0px;
         }
 
         .main-link {
