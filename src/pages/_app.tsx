@@ -1,4 +1,3 @@
-import "../styles/global.css";
 import { NextPage, NextComponentType, NextPageContext } from "next";
 import { NextRouter } from "next/router";
 import { AppProvider } from "../lib/context";
@@ -55,7 +54,26 @@ const App: NextPage<{
           position: relative;
           min-height: 100vh;
 
-          transition: color, background-color, fill, 300ms cubic-bezier(1, 0, 0, 1);
+          transition: color, background-color, fill,
+            300ms cubic-bezier(1, 0, 0, 1);
+        }
+
+        .main-link {
+          border: 1px solid;
+          height: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: currentColor;
+          text-decoration: none;
+          padding: 0px 0.7rem;
+          margin: 0rem 0.2rem 0.2rem 0rem;
+          cursor: pointer;
+          transition: border-radius 300ms cubic-bezier(1, 0, 0, 1);
+        }
+        .main-link_active,
+        .main-link:hover {
+          border-radius: 5rem;
         }
       `}</style>
     </AppProvider>
