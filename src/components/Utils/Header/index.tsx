@@ -57,13 +57,13 @@ const Header: React.FC<{}> = () => {
 
   return (
     <Fragment>
-      <div className="home-link">
+      <nav className="home-link">
         <Link href="/">
           <a>Satchel</a>
         </Link>
-      </div>
+      </nav>
 
-      <div
+      <nav
         className="module-container"
         style={{
           left: checker ? "50%" : 139,
@@ -81,7 +81,7 @@ const Header: React.FC<{}> = () => {
             {children}
           </ToggleModule>
         ))}
-      </div>
+      </nav>
 
       <style jsx>{`
         .home-link {
