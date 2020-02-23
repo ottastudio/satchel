@@ -2,19 +2,30 @@ const ToggleModule: React.FC<{
   onClick: () => void;
   state: boolean;
   label: JSX.Element;
-}> = ({ onClick, state, label, children }) => {
+  name: string;
+}> = ({ onClick, state, label, children, name }) => {
   return (
-    <div style={{ width: state ? 320 : 40 }}>
-      <button onClick={onClick}>{label}</button>
+    <div
+      className={
+        state ? "module-wrapper module-wrapper__active" : "module-wrapper"
+      }
+    >
+      <button name={`toggle-${name}`} role="toggle" onClick={onClick}>
+        {label}
+      </button>
       {state && children}
 
       <style jsx>{`
-        div {
+        .module-wrapper {
           position: relative;
-          margin-right: -1;
+          margin-right: -1px;
+          width: 40px;
           height: 40px;
           border-bottom: 1px solid;
           transition: width 300ms cubic-bezier(1, 0, 0, 1);
+        }
+        .module-wrapper__active {
+          width: 320px;
         }
         button {
           width: 40px;

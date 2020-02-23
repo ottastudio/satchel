@@ -24,24 +24,28 @@ const Header: React.FC<{}> = () => {
     {
       children: <MenuModule />,
       label: <MenuIcon />,
+      name: "menu",
       state: menu,
       onClick: () => dispatch({ type: "TOGGLE_MENU" })
     },
     {
       children: <AccountModule />,
       label: <AccountIcon />,
+      name: "account",
       state: account,
       onClick: () => dispatch({ type: "TOGGLE_ACCOUNT" })
     },
     {
       children: <CartModule />,
       label: <CartIcon />,
+      name: "cart",
       state: cart,
       onClick: () => dispatch({ type: "TOGGLE_CART" })
     },
     {
       children: <SearchModule />,
       label: <SearchIcon />,
+      name: "search",
       state: search,
       onClick: () => dispatch({ type: "TOGGLE_SEARCH" })
     }
@@ -66,8 +70,14 @@ const Header: React.FC<{}> = () => {
           transform: checker ? "translateX(-50%)" : "translateX(0%)"
         }}
       >
-        {modules.map(({ label, state, onClick, children }, i: number) => (
-          <ToggleModule key={i} label={label} state={state} onClick={onClick}>
+        {modules.map(({ label, state, onClick, children, name }, i: number) => (
+          <ToggleModule
+            key={i}
+            label={label}
+            state={state}
+            name={name}
+            onClick={onClick}
+          >
             {children}
           </ToggleModule>
         ))}
