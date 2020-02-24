@@ -35,6 +35,7 @@ const MenuModule: React.FC<{}> = () => {
           <animated.button
             title={item.label}
             style={props}
+            autoFocus={item.label === "Home" ? true : false}
             className={
               item.href === pathFromRouter
                 ? "main-link main-link_active"
