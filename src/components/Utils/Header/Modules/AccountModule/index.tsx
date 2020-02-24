@@ -36,10 +36,10 @@ const AccountModule: React.FC<{}> = () => {
       <style jsx global>{`
         .account-module {
           padding-top: 5px;
+          background-color: rgba(0, 0, 0, 0.8);
         }
         .form-container {
           position: relative;
-          margin-bottom: 0px;
           padding-right: 5px;
         }
         .form-container > button {

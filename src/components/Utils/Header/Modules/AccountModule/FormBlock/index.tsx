@@ -4,11 +4,12 @@ export interface FormBlockProps {
   id: string;
   name: string;
   label: string | boolean | undefined;
-  type: "email" | "password" | "text";
+  type: "email" | "password" | "text" | "date";
   placeholder: string;
   value: string | number | string[] | undefined;
   onChange: (e: ChangeEvent<any>) => void;
   autoFocus?: boolean;
+  autoCapitalize?: "off" | "none" | "on" | "sentences" | "words" | "characters";
 }
 
 const FormBlock: React.FC<FormBlockProps> = ({
@@ -19,11 +20,12 @@ const FormBlock: React.FC<FormBlockProps> = ({
   placeholder,
   value,
   onChange,
-  autoFocus = false
+  autoFocus = false,
+  autoCapitalize = "off"
 }) => {
   return (
     <div style={{ position: "relative", marginBottom: 5 }}>
-      <label htmlFor="login-email">{label}</label>
+      <label htmlFor={id}>{label}</label>
       <input
         id={id}
         name={name}
@@ -32,8 +34,8 @@ const FormBlock: React.FC<FormBlockProps> = ({
         value={value}
         onChange={onChange}
         autoFocus={autoFocus ? true : false}
+        autoCapitalize={autoCapitalize}
       />
-
       <style jsx>{`
         label {
           position: absolute;
@@ -43,7 +45,12 @@ const FormBlock: React.FC<FormBlockProps> = ({
           font-size: 0.6rem;
           text-transform: capitalize;
         }
-        input {
+        :global(input[type="email"]),
+        :global(input[type="password"]),
+        :global(input[type="text"]),
+        :global(input[type="date"]),
+        :global(select),
+        :global(option) {
           -webkit-appearance: none;
           outline: none;
           width: 100%;

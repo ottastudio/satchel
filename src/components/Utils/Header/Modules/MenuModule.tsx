@@ -55,6 +55,8 @@ const MenuModule: React.FC<{}> = () => {
           flex-wrap: wrap;
           align-content: baseline;
           padding: 5px 0px 0px 0px;
+          border-top: 1px solid;
+          background-color: rgba(0, 0, 0, 0.8);
         }
       `}</style>
     </div>
