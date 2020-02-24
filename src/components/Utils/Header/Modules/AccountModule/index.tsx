@@ -2,8 +2,10 @@ import { useRef } from "react";
 import { useTransition, config, animated } from "react-spring";
 import { useToggleContext } from "../../../../../lib/context/ToggleContext";
 import { useOnClickOutside } from "../../../../../lib/hooks/useOnClickOutside";
+
 import FormLogin from "./FormLogin";
 import FormRegister from "./FormRegister";
+import Note from "./Note";
 
 const AccountModule: React.FC<{}> = () => {
   const { dispatch } = useToggleContext();
@@ -12,7 +14,8 @@ const AccountModule: React.FC<{}> = () => {
 
   const items = [
     { label: "login", element: FormLogin },
-    { label: "register", element: FormRegister }
+    { label: "register", element: FormRegister },
+    { label: "note", element: Note }
   ];
 
   const transitions = useTransition(items, item => item.label, {
@@ -36,10 +39,11 @@ const AccountModule: React.FC<{}> = () => {
         }
         .form-container {
           position: relative;
-          margin-bottom: 20px;
+          margin-bottom: 0px;
+          padding-right: 5px;
         }
         .form-container > button {
-          height: 40px;
+          height: 100%;
           border: none;
           background: none;
           color: currentColor;
@@ -47,6 +51,13 @@ const AccountModule: React.FC<{}> = () => {
           cursor: pointer;
           padding: 0;
           outline: none;
+          position: absolute;
+          right: 1px;
+          top: 0;
+          transform: translateX(100%);
+          width: 79px;
+          border: 1px solid;
+          color: var(--accent-low);
         }
         .form-container > button:disabled {
           color: var(--accent-low);
@@ -54,11 +65,16 @@ const AccountModule: React.FC<{}> = () => {
         .form-container > button:disabled:hover {
           text-decoration: none;
         }
+        .form-container > button:hover,
         .form-container > button:focus {
-          color: lime;
-        }
-        .form-container > button:hover {
+          color: var(--accent-high);
           text-decoration: underline;
+        }
+
+        .account-notes {
+          color: var(--accent-low);
+          font-size: 0.8rem;
+          margin-right: 5px;
         }
       `}</style>
     </div>
