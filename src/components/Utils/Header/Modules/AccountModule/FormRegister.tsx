@@ -54,18 +54,7 @@ const FormRegister: React.SFC<{}> = () => {
             value={values.password}
             onChange={handleChange}
           />
-          <button
-            disabled={
-              values.name === "" ||
-              values.email === "" ||
-              values.password === ""
-                ? true
-                : false
-            }
-            type="submit"
-          >
-            Register
-          </button>
+          <button type="submit">Reg.</button>
         </Form>
       )}
     </Formik>

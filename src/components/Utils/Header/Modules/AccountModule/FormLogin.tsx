@@ -41,12 +41,7 @@ const FormLogin: React.SFC<{}> = () => {
             value={values.password}
             onChange={handleChange}
           />
-          <button
-            disabled={values.email === "" || values.password === "" ? true : false}
-            type="submit"
-          >
-            Login
-          </button>
+          <button type="submit">Log.</button>
         </Form>
       )}
     </Formik>
