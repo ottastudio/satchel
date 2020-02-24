@@ -29,10 +29,11 @@ const MenuModule: React.FC<{}> = () => {
   });
 
   return (
-    <div ref={wrapper} className="module-content">
+    <div ref={wrapper} className="module-content" role="menu">
       {transitions.map(({ item, props, key }) => (
-        <Link key={key} href={item.href} as={item.asPath}>
-          <animated.a
+        <Link key={key} href={item.href} as={item.asPath} passHref>
+          <animated.button
+            title={item.label}
             style={props}
             className={
               item.href === pathFromRouter
@@ -41,7 +42,7 @@ const MenuModule: React.FC<{}> = () => {
             }
           >
             {item.label}
-          </animated.a>
+          </animated.button>
         </Link>
       ))}
 
