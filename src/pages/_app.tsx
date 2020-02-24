@@ -30,21 +30,22 @@ const App: NextPage<{
           --prime-cl: #000000;
           --accent-low: rgba(255, 255, 255, 0.1);
           --accent-hight: rgba(255, 255, 255, 0.3);
+          --main-transition: 300ms cubic-bezier(1, 0, 0, 1);
         }
         @media (prefers-color-scheme: dark) {
           :root {
             --prime-bg: #000000;
             --prime-cl: #f5f5f5;
-            --accent-low: rgba(255, 255, 255, 0.1);
-            --accent-hight: rgba(255, 255, 255, 0.3);
+            --accent-low: rgba(255, 255, 255, 0.3);
+            --accent-hight: rgba(255, 255, 255, 0.6);
           }
         }
         @media (prefers-color-scheme: light) {
           :root {
-            --prime-bg: #f5f5f5;
-            --prime-cl: #000000;
-            --accent-low: rgba(0, 0, 0, 0.3);
-            --accent-hight: rgba(0, 0, 0, 0.4);
+            --prime-bg: #151515;
+            --prime-cl: #d4d4d4;
+            --accent-low: rgba(255, 255, 255, 0.2);
+            --accent-hight: rgba(255, 255, 255, 0.4);
           }
         }
         * {
@@ -63,9 +64,8 @@ const App: NextPage<{
 
           position: relative;
           min-height: 100vh;
-
-          transition: color, background-color, fill,
-            300ms cubic-bezier(1, 0, 0, 1);
+          transition: color var(--main-transition),
+            background-color var(--main-transition), fill var(--main-transition);
         }
 
         .skip-link {
@@ -80,16 +80,20 @@ const App: NextPage<{
 
         .main-link {
           border: 1px solid;
+          color: currentColor;
+          background: none;
+          font-size: inherit;
+          text-decoration: none;
           height: 2rem;
+
           display: flex;
           align-items: center;
           justify-content: center;
-          color: currentColor;
-          text-decoration: none;
+
           padding: 0px 0.7rem;
           margin: 0rem 0.2rem 0.2rem 0rem;
           cursor: pointer;
-          transition: border-radius 300ms cubic-bezier(1, 0, 0, 1);
+          transition: border-radius var(--main-transition);
         }
         .main-link_active,
         .main-link:hover {
