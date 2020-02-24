@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "alias": [
-    "satchel.now.sh"
-  ],
+  "build": {
+    "env": {
+      "MONGODB_URI": "@satchel-mongodb",
+      "SESSION_SECRET": "@satchel-session",
+      "SESSION_SECRET_REFRESH": "@satchel-session-refresh"
+    }
+  },
   "regions": [
     "sin1"
   ]
