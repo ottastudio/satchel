@@ -1,0 +1,31 @@
+POST http://localhost:3200/api/v1/users/register
+Content-Type: application/json
+
+{
+  "name": {
+    "first_name": "Taufik",
+    "last_name": "Oktama"
+  },
+  "gender": "5e53b1eb0e914711fb2401b3",
+  "birthday": "2020-02-24T11:23:47.149Z",
+  "email": "oktamataufik@gmail.com",
+  "password": "mantap",
+  "subscribe": true,
+  "role": 3
+}
+
+### 
+GET http://localhost:3200/api/v1/users
+Content-Type: application/json
+
+###
+POST http://localhost:3200/api/v1/users/gender
+Content-Type: application/json
+
+{
+  "name": "male"
+}
+
+###
+GET http://localhost:3200/api/v1/shopify
+Content-Type: application/json
